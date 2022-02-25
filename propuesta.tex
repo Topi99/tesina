@@ -1,0 +1,67 @@
+\documentclass[letterpaper, 10pt, conference]{ieeeconf}
+
+\usepackage[utf8]{inputenc}  % Ng Edit for accents in spanish
+\usepackage[spanish]{babel}  % Ng Edit for accents in spanish
+\usepackage{hyperref}        % Ng Edit for adding urls
+\usepackage{graphicx}        % Ng Edit for adding graphics
+\IEEEoverridecommandlockouts
+
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+\def\equationautorefname~#1\null{(#1)\null}%to use parenthesis in eqs.
+
+\title{\bf
+  Optimización de recursos con Particle Swarn para el control de enfermedades transmitidas por mosquitos
+}
+
+\author{Topiltzin Hernández Mares}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\begin{abstract}
+  En las últimas décadas, debido al incremento de la urbanización en poblaciones vulnerables, los brotes de enfermedades transmitidas por mosquitos se han visto en aumento. Actualmente existen estrategias para el control de estas enfermedades, sin embargo, se necesitan optimizar para lograr un mejor desempeño para la prevención de nuevos brotes. Una correcta aplicación de algoritmos modernos y eficaces de optimización en la distribución de los recursos empleados en las estrategias existentes puede mejorar el control de estas enfermedades, salvando así miles de vidas al año.
+\end{abstract}
+
+\section{Antecedentes}
+
+\subsection{Enfermedades transmitidas por mosquitos}
+
+\subsection{Brotes de Enfermedades transmitidas por mosquitos}
+
+\subsection{Estrategias para el control de enfermedades transmitidas por mosquitos}
+
+\subsection{Algoritmos de optimización}
+
+\section{Planteamiento del problema}
+El control y monitoreo de enfermedades transmitidas por mosquitos es un tema de investigación muy activo actualmente\cite{AltStrategies}. Aunque se han desarrollado nuevas estrategias para el control y monitoreo de este tipo de enfermedades, no siempre se cuenta con recursos suficientes para implementarlas.
+
+Tal es el caso del departamento de bioestadística y epidemiología de la universidad de Berkeley, el cual ha desarrollado un paquete de python enfocado en el monitoreo de enfermedades transmitidas por mosquitos, llamado MGSurvE. El objetivo de este paquete es optimizar la ubicación de trampas para mosquitos en entornos complejos en un esfuerzo para minimizar el tiempo de detección de variantes genéticas de interés\cite{MGSurvEPyPi}.
+
+Actualmente, en el paquete MGSurvE se encuentra implementado un algoritmo genético, y aunque los resultados generados por este son buenos, no son los óptimos para la ubicación de las trampas. Es por esto que se desea modificar el paquete para que utilice un algoritmo que produzca aún mejores resultados. 
+
+\section{Justificación}
+Idealmente, todos los proyectos, especialmente los que tienen como objetivo salvar vidas, deberían contar con recursos ilimitados para cumplir sus metas. Sin embargo, en el mundo real, esto es diferente. Todos los recursos son limitados, ya sea dinero, tiempo, mano de obra, etc. Es por esto que la optimización de recursos juega un rol crucial en cualquier tipo de industria. Por lo tanto, el correcto desarrollo de este proyecto presenta una solución a un importante problema actual.
+
+\section{Contribuciones esperadas}
+La solución consiste en la implementación del algoritmo de optimización Particle Swarn, reemplazando el algoritmo genético existente en el paquete MGSurvE. El principal objetivo del cambio de algoritmo, es que el paquete MGSurvE encuentre ubicaciones óptimas para las trampas de mosquitos y mejore los resultados arrojados actualmente.
+
+\section{Metodología}
+Gracias a que actualmente el paquete MGSurvE cuenta con un algoritmo de optimización, el proceso de evaluación se ve simplificado, debido a que ya se cuenta con un mecanismo para comparar resultados.
+
+Una vez implementado el nuevo algoritmo de optimización en el paquete, se compararán los resultados arrojados contra los resultados generados por los algoritmos genéticos que se encuentran en la versión actual del paquete MGSurvE. 
+
+Durante el desarrollo del proyecto se estará trabajando con el doctor Héctor M. Sánchez, del departamento de bioestadística y epidemiología de la universidad de Berkeley para validar resultados. Así mismo, todos los datasets necesarios para probar el correcto funcionamiento del algoritmo, serán proveídos por el doctor.
+
+\begin{thebibliography}{99}
+  \bibitem{MVAs}E. Agboli, J. B. Zahouli, A. Badolo, and H. Jöst, “Mosquito-associated viruses and their related mosquitoes in West Africa,” Viruses, vol. 13, no. 5, p. 891, 2021. 
+  \bibitem{AltStrategies}N. L. Achee, J. P. Grieco, H. Vatandoost, G. Seixas, J. Pinto, L. Ching-NG, A. J. Martins, W. Juntarajumnong, V. Corbel, C. Gouagna, J.-P. David, J. G. Logan, J. Orsborne, E. Marois, G. J. Devine, and J. Vontas, “Alternative strategies for mosquito-borne arbovirus control,” PLOS Neglected Tropical Diseases, vol. 13, no. 1, 2019. 
+  \bibitem{MGSurvEPyPi}H. M. Sanchez, “MGSurvE,” PyPI, 24-Feb-2022. [Online]. Available: https://pypi.org/project/MGSurvE/. [Accessed: 24-Feb-2022]. 
+\end{thebibliography}
+
+\end{document}
