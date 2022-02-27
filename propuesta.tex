@@ -42,10 +42,14 @@ Sin embargo, no fue hasta 2005 que el número de artículos científicos relacio
 
 Ya que los algoritmos basados en biología se ven separados en dos grandes grupos, se realizaron experimentos comparando su desempeño al resolver problemas de temas diversos (tales como ingeniería, física, quiímica y economía), para así determinar las situaciones en quecada tipo de algoritmo se desembuelve de mejor manera. Al finalizar los experimentos, se encontró que los algoritmos basados en Particle Swarn Optimization (PSO) obtenían mejores resultados cuando el presupuesto computacional es bajo. Sin embargo, cuando el presupuesto computacional es alto, los algoritmos genéticos eran los ganadores. De manera general, se concluyó que PSO puede ser aplicado a un gran rango de problemas del mundo real, siempre y cuando la asignación de recursos computacionales sea el adecuado \cite{SwarmVsEvol}.
 
+En 2021 se realizó un estudio para identificar las aplicaciones y tendencias actuales de los algoritmos basados en inteligencia de enjambre \cite{SwarmIntRev}. Se encontró que los tipos de algoritmos más usados en literatura moderna son los basados en PSO, esto es debido a su simplicidad, eficacia y bajo costo computacional.
+
+En  2020, debido a la pandemia de COVID-19, se registró un gran número de estudios realizando esfuerzos para el control de dicha enfermedad utilizando PSO y Differential Evolution (DE) \cite{DE&PSOCov}. La aplicación más frecuente es la calibración de modelos epidemiológicos \cite{DE&PSOCov}, así como la minimización de las dósis de vacunas usadas \cite{COVVacc}. Sin embargo, una minoría de los métodos fueron comparados con otros algoritmos de optimización, lo cual es común en estudios epidemiológicos \cite{DE&PSOCov}.
+
+Otra aplicación de algoritmos de optimización la está trabajando el departamento de bioestadística y epidemiología de la universidad de Berkeley, el cual está desarrollado un paquete de python enfocado en el monitoreo de enfermedades transmitidas por mosquitos, llamado MGSurvE. El objetivo de este paquete es optimizar la ubicación de trampas para mosquitos en entornos complejos en un esfuerzo para minimizar el tiempo de detección de variantes genéticas de interés \cite{MGSurvEPyPi}.
+
 \section{Planteamiento del problema}
 El control y monitoreo de enfermedades transmitidas por mosquitos es un tema de investigación activo \cite{AltStrategies}. Aunque se han desarrollado nuevas estrategias para el control y monitoreo de este tipo de enfermedades, no siempre se cuenta con recursos suficientes para implementarlas.
-
-Tal es el caso del departamento de bioestadística y epidemiología de la universidad de Berkeley, el cual ha desarrollado un paquete de python enfocado en el monitoreo de enfermedades transmitidas por mosquitos, llamado MGSurvE. El objetivo de este paquete es optimizar la ubicación de trampas para mosquitos en entornos complejos en un esfuerzo para minimizar el tiempo de detección de variantes genéticas de interés \cite{MGSurvEPyPi}.
 
 Actualmente, en el paquete MGSurvE se encuentra implementado un algoritmo genético, y aunque los resultados generados por este son buenos, no son los óptimos para la ubicación de las trampas. Es por esto que se desea modificar el paquete para que utilice un algoritmo que produzca aún mejores resultados. 
 
@@ -67,11 +71,17 @@ Durante el desarrollo del proyecto se estará trabajando con el doctor Héctor M
   
   \bibitem{WHOOverviewVCAG}World Health Organization. Overview of intervention classes and prototype/products under Vector Control Advisory Group (VCAG) review for assessment of public health value. Available from: http://apps.who.int/iris/bitstream/handle/10665/274451/WHO-CDS-VCAG-2018.03-eng.pdf?ua=
 
-  \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017. 
+  \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017.  
 
   \bibitem{Taxonomies}D. Molina, J. Poyatos, J. D. Ser, S. García, A. Hussain, and F. Herrera, “Comprehensive taxonomies of nature- and bio-inspired optimization: Inspiration Versus Algorithmic Behavior, critical analysis recommendations,” Cognitive Computation, vol. 12, no. 5, pp. 897-939, 2020. 
 
   \bibitem{PhysicsBasedRev}N. Siddique and H. Adeli, “Physics-based search and optimization: Inspirations from nature,” Expert Systems, vol. 33, no. 6, pp. 607-623, Dec. 2016. 
+
+  \bibitem{SwarmIntRev}J. Tang, G. Liu, and Q. Pan, “A review on representative swarm intelligence algorithms for solving optimization problems: Applications and trends,” IEEE/CAA Journal of Automatica Sinica, vol. 8, no. 10, pp. 1627–1643, Jul. 2021.
+
+  \bibitem{DE&PSOCov}A. P. Piotrowski and A. E. Piotrowska, “Differential Evolution and particle swarm optimization against covid-19,” Artificial Intelligence Review, Jul. 2021. 
+
+  \bibitem{COVVacc}G. B. Libotte, F. S. Lobato, G. M. Platt, and A. J. Silva Neto, “Determination of an optimal control strategy for vaccine administration in covid-19 pandemic treatment,” Computer Methods and Programs in Biomedicine, vol. 196, p. 105664, Jul. 2020. 
   
   \bibitem{MGSurvEPyPi}H. M. Sanchez, “MGSurvE,” PyPI, 24-Feb-2022. [Online]. Available: https://pypi.org/project/MGSurvE/. [Accessed: 24-Feb-2022]. 
 \end{thebibliography}
