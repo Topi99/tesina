@@ -13,7 +13,8 @@
 \def\equationautorefname~#1\null{(#1)\null}%to use parenthesis in eqs.
 
 \title{\bf
-  Mejora en la asignación de recursos con Particle Swarn Optimization para el control de enfermedades transmitidas por mosquitos
+  Mejora en la asignación de recursos con Particle Swarn Optimization para el
+  control de enfermedades transmitidas por mosquitos
 }
 
 \author{Topiltzin Hernández Mares}
@@ -25,46 +26,142 @@
 \pagestyle{empty}
 
 \begin{abstract}
-  En las últimas décadas, debido al incremento de la urbanización en poblaciones vulnerables, los brotes de enfermedades transmitidas por mosquitos se han visto en aumento. Actualmente existen estrategias para el control de estas enfermedades, tal es el caso del uso de trampas para mosquitos. Sin embargo, se necesitan optimizar para lograr un mejor desempeño para la prevención de nuevos brotes. Una correcta aplicación de algoritmos modernos y eficaces de optimización en la distribución de los recursos empleados en las estrategias existentes puede mejorar el control de estas enfermedades, salvando así miles de vidas al año.
+  En las últimas décadas, debido al incremento de la urbanización en
+  poblaciones vulnerables, los brotes de enfermedades transmitidas por
+  mosquitos se han visto en aumento.
+  Actualmente existen estrategias para el control de estas enfermedades, tal es
+  el caso del uso de trampas para mosquitos.
+  Sin embargo, se necesitan optimizar para lograr un mejor desempeño para la 
+  revención de nuevos brotes.
+  Una correcta aplicación de algoritmos modernos y eficaces de optimización en
+  la distribución de los recursos empleados en las estrategias existentes puede
+  mejorar el control de estas enfermedades, salvando así miles de vidas al año.
 \end{abstract}
 
 \section{Antecedentes}
 
-\subsection{Alternativas para el control de enfermedades transmitidas por mosquitos}
-Aunque las estrategias actuales reducen las transmisiones de enfermedades causadas por arbovirus, el grado de éxito de estas no es del todo entendido debido a la falta de evidencia. Algunas de las razones son implementaciones inadecuadas de los programas; cobertura inefectiva; falta de recursos; e incapacidad de escalamiento \cite{AltStrategies}. Por esto, la OMS ha reconocido nuevos tipos de intervenciones y estrategias para el control y prevención de enfermedades transmitidas por mosquitos \cite{WHOOverviewVCAG}.
+\subsection{
+  Alternativas para el control de enfermedades transmitidas por mosquitos
+}
+  Aunque las estrategias actuales reducen las transmisiones de enfermedades 
+  ausadas por arbovirus, el grado de éxito de estas no es del todo entendido
+  debido a la falta de evidencia.
+  Algunas de las razones son implementaciones inadecuadas de los programas;
+  cobertura inefectiva; falta de recursos; e incapacidad de escalamiento
+  \cite{AltStrategies}.
+  Por esto, la OMS ha reconocido nuevos tipos de intervenciones y estrategias
+  para el control y prevención de enfermedades transmitidas por mosquitos
+  \cite{WHOOverviewVCAG}.
 
-Los métodos más prometedores, según sus resultados de ensayos clínicos, son: larvicidas empleando hongos; repelentes espaciales; trampas; cebos de azúcar (ATBS); materiales tratados con insecticidas (ITMs); técnicas de esterilización de insectos (SIT); liberación de insectos con letalidad dominante (RIDL); Wolbachia; y manipulación de genes \cite{AltStrategies}.
+  Los métodos más prometedores, según sus resultados de ensayos clínicos, son:
+  larvicidas empleando hongos; repelentes espaciales; trampas; cebos de azúcar
+  (ATBS); materiales tratados con insecticidas (ITMs); técnicas de
+  esterilización de insectos (SIT); liberación de insectos con letalidad
+  dominante (RIDL); Wolbachia; y manipulación de genes \cite{AltStrategies}.
 
 \subsection{Algoritmos de optimización}
-Las publicaciones de métodos computacionales y algoritmos para resolver problemas de optimización datan desde 1960, con la implementación de metaheuristicas para resolver problemas de distintos campos de la ciencia \cite{SwarmVsEvol}.
+  Las publicaciones de métodos computacionales y algoritmos para resolver
+  problemas de optimización datan desde 1960, con la implementación de
+  metaheuristicas para resolver problemas de distintos campos de la ciencia
+  \cite{SwarmVsEvol}.
 
-Sin embargo, no fue hasta 2005 que el número de artículos científicos relacionados a nuevos métodos de optimización se vio en incremento \cite{Taxonomies}. Debido a esto, fue necesaria la creación de una taxonomía que agrupara los algoritmos, por lo que las siguientes clasificaciones fueron propuestas: basados en biología, que fueron separados en dos subgrupos: basados en crianza y basados en inteligencia de enjambre; basados en física; basados en química; y más \cite{Taxonomies}. Los algoritmos más empleados en últimos años son los basados en biología \cite{Taxonomies}, seguidos por los basados en física \cite{PhysicsBasedRev}.
+  Sin embargo, no fue hasta 2005 que el número de artículos científicos
+  relacionados a nuevos métodos de optimización se vio en incremento
+  \cite{Taxonomies}.
+  Debido a esto, fue necesaria la creación de una taxonomía que agrupara los
+  algoritmos, por lo que las siguientes clasificaciones fueron propuestas:
+  basados en biología, que fueron separados en dos subgrupos: basados en
+  crianza y basados en inteligencia de enjambre; basados en física; basados en
+  química; y más \cite{Taxonomies}.
+  Los algoritmos más empleados en últimos años son los basados en biología
+  \cite{Taxonomies}, seguidos por los basados en física \cite{PhysicsBasedRev}.
 
-Ya que los algoritmos basados en biología se ven separados en dos grandes grupos, se realizaron experimentos comparando su desempeño al resolver problemas de temas diversos (tales como ingeniería, física, química y economía), para así determinar las situaciones en que cada tipo de algoritmo se desembuelve de mejor manera. Al finalizar los experimentos, se encontró que los algoritmos basados en Particle Swarn Optimization (PSO) obtenían mejores resultados cuando el presupuesto computacional es bajo. Sin embargo, cuando el presupuesto computacional es alto, los algoritmos genéticos eran los ganadores. De manera general, se concluyó que PSO puede ser aplicado a un gran rango de problemas del mundo real, siempre y cuando la asignación de recursos computacionales sea el adecuado \cite{SwarmVsEvol}.
+  Ya que los algoritmos basados en biología se ven separados en dos grandes
+  grupos, se realizaron experimentos comparando su desempeño al resolver
+  problemas de temas diversos (tales como ingeniería, física, química y
+  economía), para así determinar las situaciones en que cada tipo de algoritmo
+  se desembuelve de mejor manera.
+  Al finalizar los experimentos, se encontró que los algoritmos basados en
+  Particle Swarn Optimization (PSO) obtenían mejores resultados cuando el
+  presupuesto computacional es bajo. Sin embargo, cuando el presupuesto
+  computacional es alto, los algoritmos genéticos eran los ganadores.
+  De manera general, se concluyó que PSO puede ser aplicado a un gran rango de
+  problemas del mundo real, siempre y cuando la asignación de recursos
+  computacionales sea el adecuado \cite{SwarmVsEvol}.
 
-En 2021 se realizó un estudio para identificar las aplicaciones y tendencias actuales de los algoritmos basados en inteligencia de enjambre \cite{SwarmIntRev}. Se encontró que los tipos de algoritmos más usados en literatura moderna son los basados en PSO, esto es debido a su simplicidad, eficacia y bajo costo computacional.
+  En 2021 se realizó un estudio para identificar las aplicaciones y tendencias
+  actuales de los algoritmos basados en inteligencia de enjambre
+  \cite{SwarmIntRev}.
+  Se encontró que los tipos de algoritmos más usados en literatura moderna son
+  los basados en PSO, esto es debido a su simplicidad, eficacia y bajo costo
+  computacional.
 
-En  2020, debido a la pandemia de COVID-19, se registró un gran número de estudios realizando esfuerzos para el control de dicha enfermedad utilizando PSO y Differential Evolution (DE) \cite{DE&PSOCov}. La aplicación más frecuente es la calibración de modelos epidemiológicos \cite{DE&PSOCov}, así como la minimización de las dosis de vacunas usadas \cite{COVVacc}. Sin embargo, una minoría de los métodos fueron comparados con otros algoritmos de optimización, lo cual es común en estudios epidemiológicos \cite{DE&PSOCov}.
+  En  2020, debido a la pandemia de COVID-19, se registró un gran número de
+  estudios realizando esfuerzos para el control de dicha enfermedad utilizando
+  PSO y Differential Evolution (DE) \cite{DE&PSOCov}.
+  La aplicación más frecuente es la calibración de modelos epidemiológicos
+  \cite{DE&PSOCov}, así como la minimización de las dosis de vacunas usadas
+  \cite{COVVacc}.
+  Sin embargo, una minoría de los métodos fueron comparados con otros
+  algoritmos de optimización, lo cual es común en estudios epidemiológicos
+  \cite{DE&PSOCov}.
 
-Otra aplicación de algoritmos de optimización está siendo trabajada por el departamento de bioestadística y epidemiología de la universidad de Berkeley, desarrollando un paquete de Python enfocado en el monitoreo de enfermedades transmitidas por mosquitos, llamado MGSurvE. El objetivo de este paquete es optimizar la ubicación de trampas para mosquitos en entornos complejos en un esfuerzo para minimizar el tiempo de detección de variantes genéticas de interés \cite{MGSurvEPyPi}.
+  Otra aplicación de algoritmos de optimización está siendo trabajada por el
+  departamento de bioestadística y epidemiología de la universidad de Berkeley,
+  desarrollando un paquete de Python enfocado en el monitoreo de enfermedades
+  transmitidas por mosquitos, llamado MGSurvE.
+  El objetivo de este paquete es optimizar la ubicación de trampas para
+  mosquitos en entornos complejos en un esfuerzo para minimizar el tiempo de
+  detección de variantes genéticas de interés \cite{MGSurvEPyPi}.
 
 \section{Planteamiento del problema}
-El control y monitoreo de enfermedades transmitidas por mosquitos es un tema de investigación activo \cite{AltStrategies}. Aunque se han desarrollado nuevas estrategias para el control y monitoreo de este tipo de enfermedades, no siempre se cuenta con recursos suficientes para implementarlas.
+  El control y monitoreo de enfermedades transmitidas por mosquitos es un tema
+  de investigación activo \cite{AltStrategies}.
+  Aunque se han desarrollado nuevas estrategias para el control y monitoreo de
+  este tipo de enfermedades, no siempre se cuenta con recursos suficientes para
+  implementarlas.
 
-Actualmente, en el paquete MGSurvE se encuentra implementado un algoritmo genético, y aunque los resultados generados por este son buenos, no son los óptimos para la ubicación de las trampas. Es por esto que se desea modificar el paquete para que utilice un algoritmo que produzca aún mejores resultados. 
+  Actualmente, en el paquete MGSurvE se encuentra implementado un algoritmo
+  genético, y aunque los resultados generados por este son buenos, no son los
+  óptimos para la ubicación de las trampas.
+  Es por esto que se desea modificar el paquete para que utilice un algoritmo
+  que produzca aún mejores resultados. 
 
 \section{Justificación}
-Idealmente, todos los proyectos, especialmente los que tienen como objetivo salvar vidas, deberían contar con recursos ilimitados para cumplir sus metas. Sin embargo, en el mundo real, esto es diferente. Todos los recursos son limitados, ya sea dinero, tiempo, mano de obra, etc. Es por esto que la optimización de recursos juega un rol crucial en cualquier tipo de industria. Por lo tanto, el correcto desarrollo de este proyecto presenta una solución a un importante problema actual.
+  Idealmente, todos los proyectos, especialmente los que tienen como objetivo
+  salvar vidas, deberían contar con recursos ilimitados para cumplir sus metas.
+  Sin embargo, en el mundo real, esto es diferente.
+  Todos los recursos son limitados, ya sea dinero, tiempo, mano de obra, etc.
+  Es por esto que la optimización de recursos juega un rol crucial en cualquier
+  tipo de industria. Por lo tanto, el correcto desarrollo de este proyecto
+  presenta una solución a un importante problema actual.
 
 \section{Contribuciones esperadas}
-La solución consiste en la implementación del algoritmo Particle Swarn Optimization, reemplazando el algoritmo genético existente en el paquete MGSurvE. El principal objetivo del cambio de algoritmo, es que el paquete MGSurvE encuentre ubicaciones óptimas para las trampas de mosquitos y mejore los resultados arrojados actualmente. Al finalizar el proyecto, se espera tener el repositorio público actualizado con las nuevas implementaciones, así como la nueva versión del paquete instalable en PyPi.
+  La solución consiste en la implementación del algoritmo Particle Swarn
+  Optimization, reemplazando el algoritmo genético existente en el paquete
+  MGSurvE.
+  El principal objetivo del cambio de algoritmo, es que el paquete MGSurvE
+  encuentre ubicaciones óptimas para las trampas de mosquitos y mejore los
+  resultados arrojados actualmente.
+  Al finalizar el proyecto, se espera tener el repositorio público actualizado
+  con las nuevas implementaciones, así como la nueva versión del paquete
+  instalable en PyPi.
 
 \section{Metodología}
-Gracias a que actualmente el paquete MGSurvE cuenta con un algoritmo de optimización, el proceso de evaluación se ve simplificado, debido a que ya se cuenta con un mecanismo para comparar resultados.
+  Gracias a que actualmente el paquete MGSurvE cuenta con un algoritmo de
+  optimización, el proceso de evaluación se ve simplificado, debido a que ya se
+  cuenta con un mecanismo para comparar resultados.
 
-Una vez implementado el nuevo algoritmo de optimización en el paquete, se compararán los resultados arrojados contra los resultados generados por los algoritmos genéticos que se encuentran en la versión actual del paquete MGSurvE. 
+  Una vez implementado el nuevo algoritmo de optimización en el paquete, se
+  compararán los resultados arrojados contra los resultados generados por los
+  algoritmos genéticos que se encuentran en la versión actual del paquete
+  MGSurvE. 
 
-Durante el desarrollo del proyecto se estará trabajando con el doctor Héctor M. Sánchez, del departamento de bioestadística y epidemiología de la universidad de Berkeley para validar resultados. Así mismo, todos los datasets necesarios para probar el correcto funcionamiento del algoritmo, serán proveídos por el doctor.
+  Durante el desarrollo del proyecto se estará trabajando con el doctor Héctor
+  M. Sánchez, del departamento de bioestadística y epidemiología de la
+  universidad de Berkeley para validar resultados.
+  Así mismo, todos los datasets necesarios para probar el correcto
+  funcionamiento del algoritmo, serán proveídos por el doctor.
 
 \begin{thebibliography}{99}
   \bibitem{AltStrategies}N. L. Achee, J. P. Grieco, H. Vatandoost, G. Seixas, J. Pinto, L. Ching-NG, A. J. Martins, W. Juntarajumnong, V. Corbel, C. Gouagna, J.-P. David, J. G. Logan, J. Orsborne, E. Marois, G. J. Devine, and J. Vontas, “Alternative strategies for mosquito-borne arbovirus control,” PLOS Neglected Tropical Diseases, vol. 13, no. 1, 2019. 
