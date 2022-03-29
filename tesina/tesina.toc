@@ -11,10 +11,11 @@
 \contentsline {subsection}{\numberline {2.1.7}Particle Swarm Optimization}{4}{subsection.2.1.7}%
 \contentsline {section}{\numberline {2.2}Trabajos relevantes en el área}{4}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Optimización de ubicación de una red de sensores inalámbricos en un taller inteligente}{4}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}Comparación}{6}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Conclusión}{6}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Problema y justificación}{7}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Solución}{8}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Metodología de evaluación}{9}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Resultados y contribuciones}{10}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusiones}{11}{chapter.7}%
+\contentsline {subsection}{\numberline {2.2.2}Asignación óptima de unidades de generación distribuidas en sistemas de energía radiales}{6}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Comparación}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Conclusión}{7}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Problema y justificación}{8}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Solución}{9}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Metodología de evaluación}{10}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Resultados y contribuciones}{11}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusiones}{12}{chapter.7}%

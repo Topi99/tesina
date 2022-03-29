@@ -198,6 +198,49 @@
     WSN y no requiere de un alto presupuesto computacional para lograr buenas
     soluciones. 
 
+  \subsection{Asignación óptima de unidades de generación distribuidas en
+    sistemas de energía radiales}
+    Hantash et al, en 2020 \cite{PSOEnergy}, publicaron un estudio en el que
+    proponen una modificación al estándar PSO-iw para calcular las posiciones y
+    tamaños de unidades generadoras distribuidas en una red radial de energía
+    eléctrica. 
+
+    Los autores partieron del estándar PSO-iw y, después de una investigación,
+    encontraron que valores grandes en el peso inercial ($w$) facilitan la
+    búsqueda global, mientras que valores pequeños de $w$ favorecen la búsqueda
+    local \cite{CPSO, APSO2016}. Gracias a estos hallazgos, los autores proponen
+    una estrategia no
+    lineal para obtener valores de $w$ variables con el tiempo. Esta estrategia
+    está descrita en la Ecuación \ref{eq:4}:
+
+    \begin{equation}
+      \label{eq:4}
+      w = w_{max} e^{(((maxiter - iter) / maxiter) - 1)} - w_{min} 
+    \end{equation}
+    en donde $w_{max}$ es el peso máximo, $w_{min}$ es el peso mínimo, $iter$ es
+    la iteración actual y $maxiter$ es el número máximo de iteraciones.
+
+    Finalmente, para validar sus resultados, el grupo de investigadores
+    decidió comparar su
+    estrategia propuesta contra un PSO convencional. Para comparar los
+    resultados arrojados por ambos algoritmos, se usó la red de energía estándar
+    IEEE 34. Después de la ejecución de los experimentos, los investigadores
+    obtuvieron pérdidas de energía 31.6\% menores con su propuesta de PSO a
+    comparación del PSO convencional sin el valor de $w$ variable. Además de
+    esto, la propuesta consumió 62.2325 s para proveer una solución optima,
+    cuando el PSO convencional consumió 62.2325 s. La comparación completa
+    entre el PSO propuesto y el convencional está en la Figura
+    \ref{fig:pso-iw-variable-comp}.
+
+    \begin{figure}[ht]
+      \includegraphics[width=\textwidth]{pso-iw-variable-comp.png}
+      \centering
+      \caption{Comparación de resultados entre el PSO propuesto y el
+        convencional}
+      \label{fig:pso-iw-variable-comp}
+      \centering
+    \end{figure}
+
 \section{Comparación}
 \section{Conclusión}
 
@@ -224,6 +267,8 @@
   \bibitem{PSOReview}S. Cheg, H. Lu, X. Lei, and Y. Shi, “A quarter century of particle swarm optimization,”, Complex and Intelligent Systems, vol. 4, no. 3, pp. 227 239, 2018.
 
   \bibitem{3DAFAO}S. Li, C. Zhang, and J. Qu, “Location optimization of wireless sensor network in Intelligent Workshop based on the three-dimensional adaptive fruit fly optimization algorithm,” International Journal of Online Engineering (iJOE), vol. 14, no. 11, p. 202, Nov. 2018. 
+  \bibitem{PSOEnergy}N. Hantash, T. Khatib, and M. Khammash, “An improved particle swarm optimization algorithm for optimal allocation of distributed generation units in Radial Power Systems,” Applied Computational Intelligence and Soft Computing, vol. 2020, pp. 1-8.
+  \bibitem{APSO2016}H. Liang and F. H. Kang, “Adaptive mutation particle swarm algorithm with dynamic nonlinear changed inertia weight,” Optik-International Journal for Light and Electron Optics, vol. 127, no. 19, pp. 8036-8042, 2016.
 \end{thebibliography}
 
 \end{document}
