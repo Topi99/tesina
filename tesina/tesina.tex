@@ -26,10 +26,10 @@
 \listoffigures
 \listoftables
 
-\begin{abstract}
-\end{abstract}
+% \begin{abstract}
+% \end{abstract}
 
-\chapter{Introducción}
+% \chapter{Introducción}
 
 \chapter{Estado del arte}
   Antes de hablar del problema y su solución, es necesario entrar en contexto.
@@ -94,7 +94,7 @@
     inspirados en el comportamiento complejo y, algunas veces, coordinado de
     enjambres de cualquier organismo natural \cite{SearchMethodologies}. 
     
-    \begin{figure}[h!]
+    \begin{figure}[ht!]
       \includegraphics[scale=0.18]{si-repr}
       \centering
       \caption{Inspiración de algoritmos de inteligencia de enjambre.}
@@ -163,7 +163,7 @@
     \ref{fig:location-error-3d-foa-3d-afoa_1} se muestran los resultados
     obtenidos.
 
-    \begin{figure}[h!]
+    \begin{figure}[ht!]
       \includegraphics[width=\textwidth]{location-error-3d-foa-3d-afoa_1.png}
       \centering
       \caption{Resultados de error de detección de 3D-FOA y 3D-AFOA.}
@@ -179,7 +179,7 @@
     y 5 nodos fijos en la red para detectar nuevamente un recurso en el taller
     simulado. Los resultados se muestran en \ref{fig:location-error-3d-afoa_2}.
 
-    \begin{figure}[h!]
+    \begin{figure}[ht!]
       \includegraphics[width=\textwidth]{location-error-3d-afoa_2.png}
       \centering
       \caption{Resultados de error de detección con diferente cantidad de
@@ -234,7 +234,7 @@
     entre el PSO propuesto y el convencional está en la Figura
     \ref{fig:pso-iw-variable-comp}.
 
-    \begin{figure}[h!]
+    \begin{figure}[ht!]
       \includegraphics[width=\textwidth]{pso-iw-variable-comp.png}
       \centering
       \caption{Comparación de resultados entre el PSO propuesto y el
@@ -243,60 +243,129 @@
       \centering
     \end{figure}
 
-\section{Comparación de algoritmos}
-    Los trabajos mencionados en la sección anterior proponen diferentes
-    algoritmos para solucionar problemas muy similares: encontrar la mejor
-    ubicación de nodos en una red de nodos para optimizar algún resultado de una
-    medición. Un aspecto en común de las soluciones propuestas por los
-    diferentes investigadores es que todos hacen uso de algoritmos
-    metaheurísticos iterativos para optimización. Otra similitud es que sus
-    soluciones están basadas en inteligencia de enjambre y más específicamente
-    en PSO. 
+  \subsection{Optimización de ubicación de trampas para mosquitos}
+    El trabajo realizado por Sánchez y el Departamento de bioestadística y
+    epidemiología de la universidad de Berkley \cite{MGSurvE} aún no ha sido
+    publicado y sigue en progreso, sin embargo, es el estado del arte en el área
+    de este trabajo. Sánchez et al están trabajando en un paquete llamado
+    MGSurvE, el cual está diseñado para optimizar la ubicación de trampas de
+    mosquito en entornos espacialmente heterogéneos. 
 
-    Además de los algoritmos propuestos por las investigaciones mencionadas en
-    la sección anterior, encontramos una gran variedad usados en la actualidad
-    para resolver problemas optimización. En un estudio realizado en 2021 por
-    Piotrowski et al \cite{DE&PSOCov}, encontraron que las principales familias
-    de algoritmos usados para resolver problemas de optimización relacionados a
-    la pandemia de COVID-19 fueron Swarm Intelligence (SI) y Evolutionary
-    Algorithms (EA). 
+    En el estado actual del paquete cuenta con diversas funcionalidades, tales
+    como: diferentes kernels de movimiento para mosquitos machos y hembras;
+    kernels de atractivo para trampas personalizables; soporte para trampas
+    inamovibles; rutinas de trazado de mapas integradas; integración de rutinas
+    para optimización con GA; y mucho más, con más funciones esperadas en
+    futuras actualizaciones.
 
-    En 2017, un estudio similar realizado por Piotrowski et al
-    \cite{SwarmVsEvol}, sometieron a 33 metaheurísticas propuestas entre 1960 y
-    2016 a 22 experimentos, cada una con diferentes presupuestos
-    computacionales. Al finalizar los experimentos, encontraron que algoritmos
-    basados en inteligencia de enjambre tienen un mejor desempeño cuando el
-    presupuesto computacional es bajo. A diferencia de los algoritmos basados en
-    inteligencia de enjambre, los basados en procesos evolutivos tienen un mejor
-    desempeño cuando el presupuesto computacional es alto. 
+    Como se mencionó, las rutinas de optimización para la ubicación de las
+    trampas para mosquito se implementa un algoritmo genético (GA), el cual es
+    la variante estándar y es importado directamente del paquete DEAP
+    \cite{DEAP}.
 
-    Para resaltar las ventajas y desventajas de los diferentes tipos de
-    algoritmos, en la tabla \ref{table:pso-ga-pros-cons} se muestra una
-    comparación detallada entre SI y EA.
+    Para el correcto funcionamiento del algoritmo de optimización, 3 grupos de
+    características deben ser definidas: del entorno, de las trampas y del
+    comportamiento de migración de mosquitos. En la figura
+    \ref{fig:mgsurve-landscape-diagram} se describe cómo estos tres grupos de
+    características forman el "Landscape", el cual es usado por el algoritmo 
+    genético. 
 
-    \begin{table}[h!]
+    \begin{figure}[h!]
+      \includegraphics[width=\textwidth]{fig:mgsurve-landscape-diagram.jpeg}
       \centering
-      \begin{tabular}{ |c||c|c| }
-        \hline
-        Algoritmo & Ventajas & Desventajas \\
-        \hline
-      \end{tabular}
-      \caption{Ventajas y desventajas de SI y EA basado en
-        \cite{DE&PSOCov, SwarmVsEvol}.}
-      \label{table:pso-ga-pros-cons}
-    \end{table}
+      \caption{Interacción del Landscape con el algoritmo genético.}
+      \label{fig:mgsurve-landscape-diagram}
+      \centering
+    \end{figure}
+
+    En la fecha de realización de este capítulo, aunque no hay ningún
+    experimento publicado oficialmente, la documentación del paquete sí cuenta
+    con ejemplos y tutoriales de optimización en la siguiente URL
+    \url{https://chipdelmal.github.io/MGSurvE/build/html/GA.html}. En los
+    tutoriales, el número de población es de 10 por cada trampa a optimizar. Si
+    se desean optimizar 4 trampas, se utiliza una población de entre 40 o 50.
+
+    Para finalizar, el paquete permite obtener el mejor cromosoma y trazar en un
+    diagrama el mapa de las trampas y la migración de los mosquitos.
+
+\section{Comparación de algoritmos}
+  Los trabajos mencionados en la sección anterior proponen diferentes algoritmos
+  para solucionar problemas muy similares: encontrar la mejor ubicación de nodos
+  en una red de nodos para optimizar algún resultado de una medición. Un aspecto
+  en común de las soluciones propuestas por los diferentes investigadores es que
+  todos hacen uso de algoritmos metaheurísticos iterativos para optimización.
+  Otra similitud es que sus soluciones están basadas en inteligencia de enjambre
+  y más específicamente en PSO. 
+
+  Para resaltar las ventajas y desventajas de los diferentes tipos de
+  algoritmos, en la tabla \ref{table:pso-ga-pros-cons} se muestra una
+  comparación detallada entre PSO y GA.
+
+  \begin{figure}[ht!]
+    \includegraphics[width=\textwidth]{pso-ga-pros-cons.png}
+    \caption{Ventajas y desventajas de PSO y GA basado en
+      \cite{DE&PSOCov, SwarmVsEvol}.}
+    \label{table:pso-ga-pros-cons}
+  \end{figure}
+
+  Además de los algoritmos propuestos por las investigaciones mencionadas en la 
+  sección anterior, se pueden encontrar una gran variedad usados en la
+  actualidad para 
+  resolver problemas optimización. En un estudio realizado en 2021 por
+  Piotrowski et al \cite{DE&PSOCov}, encontraron que las principales familias de
+  algoritmos usados para resolver problemas de optimización relacionados a la 
+  pandemia de COVID-19 fueron Swarm Intelligence (SI) y Evolutionary Algorithms
+  (EA). 
+
+  En 2017, un estudio similar realizado por Piotrowski et al \cite{SwarmVsEvol},
+  sometieron a 33 metaheurísticas propuestas entre 1960 y 2016 a 22
+  experimentos, cada una con diferentes presupuestos computacionales.
+  Al finalizar los experimentos, encontraron que algoritmos basados en
+  inteligencia de enjambre tienen un mejor desempeño cuando el presupuesto
+  computacional es bajo. A diferencia de los algoritmos basados en inteligencia
+  de enjambre, los basados en procesos evolutivos tienen un mejor desempeño
+  cuando el presupuesto computacional es alto. 
+  
+  Aunque lo anterior es cierto, en un estudio de 2020 realizado por Piotrowski
+  et al \cite{PSOPopulationSize}, se encontró que variantes modernas de PSO y
+  SI sin peso inercial
+  logran mejores resultados con una población de entre 70 y 500 partículas,
+  contradiciendo las recomendaciones para lograr mejores resultados con
+  variantes clásicas.
+  Debido a esto, es de gran importancia conocer las condiciones adecuadas para
+  cada variante de algoritmos basados en PSO. Si la cantidad adecuada de
+  partículas para un problema en cuestión es desconocido, la recomendación es
+  usar entre 70 y 100 partículas.
 
 \section{Conclusión}
 
-\chapter{Problema y justificación}
+  En la actualidad, existe una gran variedad de algoritmos de optimización los
+  cuales tienen comportamientos diferentes para cada tipo de problema
+  \cite{SwarmVsEvol}. Por esto, es de suma importancia escoger correctamente el
+  algoritmo que será empleado en alguna solución, para así obtener resultados
+  realmente óptimos.
 
-\chapter{Solución}
+  Como se ve en la tabla \ref{table:pso-ga-pros-cons} y se discutió en la
+  sección anterior, los algoritmos genéticos tienen un mejor comportamiento y
+  desempeño cuando el presupuesto computacional y la población es grande
+  (más de 50), por lo que el trabajo realizado en MGSurvE \cite{MGSurvE} no
+  está optimizando correctamente las ubicaciones de las trampas para mosquitos,
+  pues usan poblaciones de entre 40 y 50, además de un presupuesto computacional
+  bajo. Esta situación da paso a una oportunidad de mejora, para implementar un
+  algoritmo que se ajuste en mejor manera a la situación de MGSurvE, con la
+  posibilidad de mejorar la optimización de la ubicación de las trampas para
+  mosquitos.
 
-\chapter{Metodología de evaluación}
 
-\chapter{Resultados y contribuciones}
+% \chapter{Problema y justificación}
 
-\chapter{Conclusiones}
+% \chapter{Solución}
+
+% \chapter{Metodología de evaluación}
+
+% \chapter{Resultados y contribuciones}
+
+% \chapter{Conclusiones}
 
 \begin{thebibliography}{99}
   \bibitem{AIModernAproach}S. Russell and P. Norving, “Artificial Intelligence: A modern approach”, 3rd ed. Prentice Hall, New Jersey: Pearson Education, 2009. 
@@ -313,8 +382,11 @@
   \bibitem{3DAFAO}S. Li, C. Zhang, and J. Qu, “Location optimization of wireless sensor network in Intelligent Workshop based on the three-dimensional adaptive fruit fly optimization algorithm,” International Journal of Online Engineering (iJOE), vol. 14, no. 11, p. 202, Nov. 2018. 
   \bibitem{PSOEnergy}N. Hantash, T. Khatib, and M. Khammash, “An improved particle swarm optimization algorithm for optimal allocation of distributed generation units in Radial Power Systems,” Applied Computational Intelligence and Soft Computing, vol. 2020, pp. 1-8.
   \bibitem{APSO2016}H. Liang and F. H. Kang, “Adaptive mutation particle swarm algorithm with dynamic nonlinear changed inertia weight,” Optik-International Journal for Light and Electron Optics, vol. 127, no. 19, pp. 8036-8042, 2016.
+  \bibitem{MGSurvE}H. M. Sanchez, “MGSurvE's documentation,” MGSurvE's documentation! - MGSurvE documentation, 2021. [Online]. Available: https://chipdelmal.github.io/MGSurvE/build/html/index.html. [Accessed: 31-Mar-2022]. 
+  \bibitem{DEAP}DEAP Project, “DEAP documentation,” DEAP documentation - DEAP 1.3.1 documentation, 2022. [Online]. Available: https://deap.readthedocs.io/en/master/. [Accessed: 01-Apr-2022]. 
   \bibitem{DE&PSOCov}A. P. Piotrowski and A. E. Piotrowska, “Differential Evolution and particle swarm optimization against covid-19,” Artificial Intelligence Review, Jul. 2021. 
-  \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017.  
+  \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017. 
+  \bibitem{PSOPopulationSize}A. P. Piotrowski, J. J. Napiorkowski, and A. E. Piotrowska, “Population size in particle swarm optimization,” Swarm and Evolutionary Computation, vol. 58, May 2020. 
 \end{thebibliography}
 
 \end{document}
