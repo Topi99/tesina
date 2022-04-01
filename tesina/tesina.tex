@@ -24,6 +24,7 @@
 \pagestyle{empty}
 \tableofcontents
 \listoffigures
+\listoftables
 
 \begin{abstract}
 \end{abstract}
@@ -93,7 +94,7 @@
     inspirados en el comportamiento complejo y, algunas veces, coordinado de
     enjambres de cualquier organismo natural \cite{SearchMethodologies}. 
     
-    \begin{figure}[h]
+    \begin{figure}[h!]
       \includegraphics[scale=0.18]{si-repr}
       \centering
       \caption{Inspiración de algoritmos de inteligencia de enjambre.}
@@ -162,10 +163,10 @@
     \ref{fig:location-error-3d-foa-3d-afoa_1} se muestran los resultados
     obtenidos.
 
-    \begin{figure}[ht]
+    \begin{figure}[h!]
       \includegraphics[width=\textwidth]{location-error-3d-foa-3d-afoa_1.png}
       \centering
-      \caption{Resultados de error de detección de 3D-FOA y 3D-AFOA}
+      \caption{Resultados de error de detección de 3D-FOA y 3D-AFOA.}
       \label{fig:location-error-3d-foa-3d-afoa_1}
       \centering
     \end{figure}
@@ -178,10 +179,11 @@
     y 5 nodos fijos en la red para detectar nuevamente un recurso en el taller
     simulado. Los resultados se muestran en \ref{fig:location-error-3d-afoa_2}.
 
-    \begin{figure}[ht]
+    \begin{figure}[h!]
       \includegraphics[width=\textwidth]{location-error-3d-afoa_2.png}
       \centering
-      \caption{Resultados de error de detección con diferente cantidad de nodos}
+      \caption{Resultados de error de detección con diferente cantidad de
+        nodos.}
       \label{fig:location-error-3d-afoa_2}
       \centering
     \end{figure}
@@ -232,16 +234,58 @@
     entre el PSO propuesto y el convencional está en la Figura
     \ref{fig:pso-iw-variable-comp}.
 
-    \begin{figure}[ht]
+    \begin{figure}[h!]
       \includegraphics[width=\textwidth]{pso-iw-variable-comp.png}
       \centering
       \caption{Comparación de resultados entre el PSO propuesto y el
-        convencional}
+        convencional.}
       \label{fig:pso-iw-variable-comp}
       \centering
     \end{figure}
 
-\section{Comparación}
+\section{Comparación de algoritmos}
+    Los trabajos mencionados en la sección anterior proponen diferentes
+    algoritmos para solucionar problemas muy similares: encontrar la mejor
+    ubicación de nodos en una red de nodos para optimizar algún resultado de una
+    medición. Un aspecto en común de las soluciones propuestas por los
+    diferentes investigadores es que todos hacen uso de algoritmos
+    metaheurísticos iterativos para optimización. Otra similitud es que sus
+    soluciones están basadas en inteligencia de enjambre y más específicamente
+    en PSO. 
+
+    Además de los algoritmos propuestos por las investigaciones mencionadas en
+    la sección anterior, encontramos una gran variedad usados en la actualidad
+    para resolver problemas optimización. En un estudio realizado en 2021 por
+    Piotrowski et al \cite{DE&PSOCov}, encontraron que las principales familias
+    de algoritmos usados para resolver problemas de optimización relacionados a
+    la pandemia de COVID-19 fueron Swarm Intelligence (SI) y Evolutionary
+    Algorithms (EA). 
+
+    En 2017, un estudio similar realizado por Piotrowski et al
+    \cite{SwarmVsEvol}, sometieron a 33 metaheurísticas propuestas entre 1960 y
+    2016 a 22 experimentos, cada una con diferentes presupuestos
+    computacionales. Al finalizar los experimentos, encontraron que algoritmos
+    basados en inteligencia de enjambre tienen un mejor desempeño cuando el
+    presupuesto computacional es bajo. A diferencia de los algoritmos basados en
+    inteligencia de enjambre, los basados en procesos evolutivos tienen un mejor
+    desempeño cuando el presupuesto computacional es alto. 
+
+    Para resaltar las ventajas y desventajas de los diferentes tipos de
+    algoritmos, en la tabla \ref{table:pso-ga-pros-cons} se muestra una
+    comparación detallada entre SI y EA.
+
+    \begin{table}[h!]
+      \centering
+      \begin{tabular}{ |c||c|c| }
+        \hline
+        Algoritmo & Ventajas & Desventajas \\
+        \hline
+      \end{tabular}
+      \caption{Ventajas y desventajas de SI y EA basado en
+        \cite{DE&PSOCov, SwarmVsEvol}.}
+      \label{table:pso-ga-pros-cons}
+    \end{table}
+
 \section{Conclusión}
 
 \chapter{Problema y justificación}
@@ -269,6 +313,8 @@
   \bibitem{3DAFAO}S. Li, C. Zhang, and J. Qu, “Location optimization of wireless sensor network in Intelligent Workshop based on the three-dimensional adaptive fruit fly optimization algorithm,” International Journal of Online Engineering (iJOE), vol. 14, no. 11, p. 202, Nov. 2018. 
   \bibitem{PSOEnergy}N. Hantash, T. Khatib, and M. Khammash, “An improved particle swarm optimization algorithm for optimal allocation of distributed generation units in Radial Power Systems,” Applied Computational Intelligence and Soft Computing, vol. 2020, pp. 1-8.
   \bibitem{APSO2016}H. Liang and F. H. Kang, “Adaptive mutation particle swarm algorithm with dynamic nonlinear changed inertia weight,” Optik-International Journal for Light and Electron Optics, vol. 127, no. 19, pp. 8036-8042, 2016.
+  \bibitem{DE&PSOCov}A. P. Piotrowski and A. E. Piotrowska, “Differential Evolution and particle swarm optimization against covid-19,” Artificial Intelligence Review, Jul. 2021. 
+  \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017.  
 \end{thebibliography}
 
 \end{document}
