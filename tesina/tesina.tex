@@ -1,18 +1,19 @@
-\documentclass{report}
+\documentclass[letterpaper]{report}
 
 \usepackage[utf8]{inputenc}  % Ng Edit for accents in Spanish
 \usepackage[spanish]{babel}  % Ng Edit for accents in Spanish
 \usepackage{hyperref}        % Ng Edit for adding urls
 \usepackage{graphicx}        % Ng Edit for adding graphics
+\usepackage{setspace}
 
 %Path relative to the .tex file containing the \includegraphics command
 \graphicspath{ {img/} }
 
 \def\equationautorefname~#1\null{(#1)\null} %to use parenthesis in eqs.
-
+\onehalfspacing
 \title{\bf
-  Mejora en la asignación de recursos con Particle Swarm Optimization para el
-  control de enfermedades transmitidas por mosquitos
+  Mejora en la optimización de la ubicación de trampas para mosquito con
+  Particle Swarm Optimization.
 }
 
 \author{Topiltzin Hernández Mares}
@@ -255,6 +256,7 @@
     \end{figure}
 
   \subsection{Optimización de ubicación de trampas para mosquitos}
+    \label{subsection:mgsurve}
     Para finalizar esta sección, se describe el
     trabajo realizado por Sánchez y el Departamento de bioestadística y
     epidemiología de la universidad de Berkley \cite{MGSurvE} que aún no ha sido
@@ -296,11 +298,14 @@
     \url{https://chipdelmal.github.io/MGSurvE/build/html/GA.html}. En los
     tutoriales, el número de población es de 10 por cada trampa a optimizar. Si
     se desean optimizar 4 trampas, se utiliza una población de entre 40 o 50.
+    Además de definir la población, también se limita a 500 generaciones para
+    la optimización.
 
     Para finalizar, el paquete permite obtener el mejor cromosoma y trazar en un
     diagrama el mapa de las trampas y la migración de los mosquitos.
 
 \section{Comparación de algoritmos}
+  \label{section:analisis}
   Los trabajos mencionados en la sección anterior proponen diferentes algoritmos
   para solucionar problemas muy similares: encontrar la mejor ubicación de nodos
   en una red de nodos para optimizar algún resultado de una medición. Un aspecto
@@ -369,12 +374,56 @@
 
 \chapter{Planteamiento del problema}
   Después de analizar diferentes métodos de optimización aplicados en el área de
-  de este trabajo, el objetivo de este capítulo es describir la problemática en
-  la optimización de la ubicación de trampas para mosquito. Para esto, este 
-  capítulo se hablará sobre problemas y limitaciones con la herramienta actual
+  este trabajo, el objetivo de este capítulo es describir la problemática en
+  la optimización de la ubicación de trampas para mosquito. Para lograrlo, en
+  este 
+  capítulo primeramente se dará un poco de contexto sobre la herramienta actual,
+  enseguida se hablará sobre problemas y limitaciones con la herramienta actual
   y finalmente se concluirá con el planteamiento del problema.
 
+  \section{Contexto}
+    \subsection{Marshall Lab}
+    Marshall Lab \cite{MarshallLab} es un laboratorio perteneciente al
+    departamento de epidemiología y bioestadística de la universidad de Berkeley
+    en California. Su principal contribución es el desarrollo y simulación de
+    estrategias basadas en genética para controlar enfermedades transmitidas por
+    mosquitos. Para controlar estas enfermedades, el laboratorio simula la
+    liberación de mosquitos modificados genéticamente en un entorno controlado,
+    para así estudiar y desarrollar estrategias que permitan el comportamiento
+    deseado de estos mosquitos en el ambiente. El control de los mosquitos
+    liberados se hace con un correcto entendimiento de los patrones de
+    movimiento de estos mosquitos. Para detectar el movimiento de mosquitos, se
+    utilizan trampas, las cuales detectan la migración de los mosquitos.
 
+    Para la simulación del correcto posicionamiento de trampas, el laboratorio
+    ha creado el software MGSurvE \cite{MGSurvE}, el cual ya fue descrito en el
+    capítulo anterior \ref{subsection:mgsurve}.
+
+    Es de suma importancia el trabajo realizado por este laboratorio, pues el
+    correcto posicionamiento de trampas para mosquitos significaría un ahorro
+    económico en la batalla para el control de enfermedades transmitidas por
+    mosquito.
+
+  \section{Limitaciones de la herramienta actual}
+    En la sección de comparación de algoritmos del capítulo del
+    estado del arte
+    \ref{section:analisis} se analizan diferentes tipos de algoritmos de
+    optimización y en la tabla \ref{table:pso-ga-pros-cons} se comparan los
+    algoritmos de la familia de PSO contra algoritmos de la familia de GA. Se
+    concluyó en esa sección que los algoritmos PSO generalmente tienen un mejor
+    desempeño cuando el presupuesto computacional es bajo, lo contrario de
+    algoritmos de tipo GA. Como se habló en la sección \ref{subsection:mgsurve},
+    el paquete MGSurvE implementa un algoritmo genético (GA) para sus tareas de
+    optimización. Sin embargo, se hace uso de una población pequeña, así como un
+    límite de 500 generaciones, por lo que el presupuesto computacional es bajo
+    y el rendimiento del algoritmo y sus resultados obtenidos posiblemente no
+    sean los óptimos.
+
+  \section{Conclusión}
+    Después de establecer un estado del arte en el capítulo anterior y detallar
+    las limitaciones de la herramienta actual, se puede concluir la problemática
+    como: El software MGSurvE no genera las ubicaciones óptimas para trampas de
+    mosquitos. 
 
 % \chapter{Solución}
 
@@ -404,6 +453,7 @@
   \bibitem{DE&PSOCov}A. P. Piotrowski and A. E. Piotrowska, “Differential Evolution and particle swarm optimization against covid-19,” Artificial Intelligence Review, Jul. 2021. 
   \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017. 
   \bibitem{PSOPopulationSize}A. P. Piotrowski, J. J. Napiorkowski, and A. E. Piotrowska, “Population size in particle swarm optimization,” Swarm and Evolutionary Computation, vol. 58, May 2020. 
+  \bibitem{MarshallLab}The Marshall Lab at UC Berkeley. (s. f.). THE MARSHALL LAB. https://www.marshalllab.com/
 \end{thebibliography}
 
 \end{document}
