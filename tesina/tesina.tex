@@ -5,9 +5,14 @@
 \usepackage{hyperref}        % Ng Edit for adding urls
 \usepackage{graphicx}        % Ng Edit for adding graphics
 \usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
 
 %Path relative to the .tex file containing the \includegraphics command
 \graphicspath{ {img/} }
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
 
 \def\equationautorefname~#1\null{(#1)\null} %to use parenthesis in eqs.
 \onehalfspacing
@@ -113,7 +118,7 @@
     son las soluciones a los problemas; los alfabetos representan genes; y más
     conceptos tomados de la biología.
 
-  \subsection{Particle Swarm Optimization}
+  \subsection{Particle Swarm Optimization}\label{subsec:pso}
     Particle Swarm Optimization (PSO) fue inventada por Eberhart y Kennedy en
     1995 \cite{PSODef}, es un algoritmo
     estocástico inspirado en el comportamiento de una parvada de aves en busca
@@ -407,17 +412,17 @@
   \section{Limitaciones de la herramienta actual}
     En la sección de comparación de algoritmos del capítulo del
     estado del arte
-    \ref{section:analisis} se analizan diferentes tipos de algoritmos de
-    optimización y en la tabla \ref{table:pso-ga-pros-cons} se comparan los
+    \ref{section:analisis} se analizaron diferentes tipos de algoritmos de
+    optimización y en la tabla \ref{table:pso-ga-pros-cons} se compararon los
     algoritmos de la familia de PSO contra algoritmos de la familia de GA. Se
     concluyó en esa sección que los algoritmos PSO generalmente tienen un mejor
     desempeño cuando el presupuesto computacional es bajo, lo contrario de
     algoritmos de tipo GA. Como se habló en la sección \ref{subsection:mgsurve},
     el paquete MGSurvE implementa un algoritmo genético (GA) para sus tareas de
-    optimización. Sin embargo, se hace uso de una población pequeña, así como un
-    límite de 500 generaciones, por lo que el presupuesto computacional es bajo
-    y el rendimiento del algoritmo y sus resultados obtenidos posiblemente no
-    sean los óptimos.
+    optimización de tiempos de detección de mosquitos. Sin embargo, se hace uso
+    de una población pequeña, así como un límite de 500 generaciones, por lo que
+    el presupuesto computacional es bajo y el rendimiento del algoritmo y sus
+    resultados obtenidos posiblemente no sean los óptimos.
 
   \section{Conclusión}
     Después de establecer un estado del arte en el capítulo anterior y detallar
@@ -425,7 +430,144 @@
     como: El software MGSurvE no genera las ubicaciones óptimas para trampas de
     mosquitos. 
 
-% \chapter{Solución}
+\chapter{Solución}
+  En este capítulo se detalla la solución propuesta para la problemática
+  expuesta en el capítulo anterior. Se explica el diseño y desarrollo de la
+  solución, así como el algoritmo implementado y configuración de
+  hyperparámetros.
+
+  \section{Diseño de la solución}
+    \subsection{Selección de algoritmo}
+    Como se habló en el capítulo pasado, la problemática a resolver es que el
+    paquete MGSurvE no genera las ubicaciones óptimas para trampas de mosquitos.
+    siendo la causa principal del
+    problema que el algoritmo de optimización usado actualmente en MGSurvE
+    (un algoritmo genético, o GA) no tiene un correcto comportamiento con el
+    bajo presupuesto computacional \cite{SwarmVsEvol}. Por esto, un algoritmo
+    perteneciente a
+    la familia de Particle Swarm Optimization (PSO) es adecuado para resolver
+    este problema \cite{SwarmVsEvol,PSOPopulationSize}. Los algoritmos de tipo
+    PSO tienden a comportarse de manera ideal con una población pequeña (de 3
+    a 40 partículas), por lo que necesitan un presupuesto computacional bajo,
+    adecuado para resolver el problema presentado anteriormente.
+
+    Se implementaron dos algoritmos como candidatos para la solución de la
+    problemática. El primero, y más simple, es el PSO original propuesto
+    por Kennedy y  Eberhart en \cite{PSODef}. Este algoritmo se divide en dos
+    partes principales: la primera, actualización de la velocidad y posición de
+    una partícula; y segunda, la evaluación de la función de aptitud y
+    actualización de valores óptimos. Las partes del algoritmo están detalladas
+    en las ecuaciones \ref{eq:pso-simple-update-1}, \ref{eq:pso-simple-update-2}
+    y en el algoritmo \ref{alg:pso-simple-eval-1}.
+
+    \begin{equation}
+      v_{ij} = v_{ij} + c_1 rand()(p_{ij} - x_{ij}) + c_2 rand()(p_{nj}
+        - x_{ij})
+      \label{eq:pso-simple-update-1}
+    \end{equation}
+
+    \begin{equation}
+      x_{ij} = x_{ij} + v_{ij}
+      \label{eq:pso-simple-update-2}
+    \end{equation}
+
+    \begin{algorithm}
+      \begin{algorithmic}
+        \State Initialize $mejorParticula \gets None$
+        \ForEach{$generacion \in generaciones$}
+          \ForEach{$particula \in particulas$}
+            \State $particula.aptitud.valores \gets funcionAptitud(particula)$
+
+            \If {not $particula.mejor$ or $particula.mejor.aptitud < particula.aptitud$}
+              \State $particula.mejor \gets$ nueva particula basada en $particula$
+              \State $particula.mejor.aptitud.valores \gets particula.aptitud.valores$
+            \EndIf
+
+            \If {not $mejorParticula$ or $particula.aptitud < particula.aptitud$}
+              \State $mejorParticula \gets$ nueva particula basada en $particula$
+              \State $mejorParticula.aptitud.valores \gets particula.aptitud.valores$
+            \EndIf
+          \EndFor 
+
+          \ForEach{$particula \in particulas$}
+            \State $actualizaParticula(particula, mejorParticula)$
+          \EndFor
+        \EndFor
+        \caption{Evaluación de función de aptitud y actualización de mejor
+          partícula}
+        \label{alg:pso-simple-eval-1}
+      \end{algorithmic}
+    \end{algorithm}
+
+    Las ecuaciones \ref{eq:pso-simple-update-1} y \ref{eq:pso-simple-update-2}
+    corresponden a la primer parte del PSO. En la primer ecuación, se realiza la
+    actualización de la velocidad de la partícula $i$ en la o $j$ con
+    respecto a la mejor partícula $n$. La segunda ecuación describe la
+    actualización de la posición de la partícula con la nueva velocidad
+    calculada. El algoritmo \ref{alg:pso-simple-eval-1} corresponde a la segunda
+    parte del algoritmo.
+
+    El segundo algoritmo candidato como solución del problema es el propuesto
+    en 2020 por Hantash et al \cite{PSOEnergy}. En este algoritmo introducen una
+    variación al peso inercial original propuesto por Shi et al \cite{CPSO} en
+    1998 (descrito anteriormente en la sub sección \ref{subsec:pso}). Con esta
+    modificación la convergencia del algoritmo es controlada por el peso. Al 
+    empezar con valores mayores y terminar con valores menores, se prioriza la
+    búsqueda global inicialmente y, en las últimas etapas de la búsqueda, se
+    prioriza una búsqueda local en cada partícula \cite{CPSO}.
+
+    \begin{equation}
+      \label{eq:pso-weight-update}
+      w = w_{max} e^{(((maxiter - iter) / maxiter) - 1)} - w_{min} 
+    \end{equation}
+
+    En la ecuación \ref{eq:pso-weight-update} se muestra el cálculo y
+    actualización del peso inercial. Al ser una función no lineal, se aseguran
+    valores de $w$ más grandes en etapas tempranas de la búsqueda, así como
+    rápida transición a valores más pequeños conforme progresa la búsqueda. Por
+    lo tanto, se asegura una búsqueda global de mínimos con pocas posibilidades
+    de quedar en un mínimo local \cite{APSO2016}. Al aplicar esta variación, la
+    ecuación de actualización de velocidad de una partícula queda descrita en
+    la ecuación \ref{eq:pso-variant-update}. La actualización de posición no se
+    ve modificada (ecuación \ref{eq:pso-simple-update-2}) y el algoritmo de
+    que evalúa la función de aptitud sufre mínimas variaciones, descritas
+    en el algoritmo \cite{}.
+
+    \begin{equation}
+      v_{ij} = w v_{ij} + c_1 rand()(p_{ij} - x_{ij}) + c_2 rand()(p_{nj}
+        - x_{ij})
+      \label{eq:pso-variant-update}
+    \end{equation}
+
+    \begin{algorithm}
+      \begin{algorithmic}
+        \State Initialize $mejorParticula \gets None$
+        \ForEach{$generacion \in generaciones$}
+          \ForEach{$particula \in particulas$}
+            \State $particula.aptitud.valores \gets funcionAptitud(particula)$
+
+            \If {not $particula.mejor$ or $particula.mejor.aptitud < particula.aptitud$}
+              \State $particula.mejor \gets$ nueva particula basada en $particula$
+              \State $particula.mejor.aptitud.valores \gets particula.aptitud.valores$
+            \EndIf
+
+            \If {not $mejorParticula$ or $particula.aptitud < particula.aptitud$}
+              \State $mejorParticula \gets$ nueva particula basada en $particula$
+              \State $mejorParticula.aptitud.valores \gets particula.aptitud.valores$
+            \EndIf
+          \EndFor 
+
+          \ForEach{$particula \in particulas$}
+            \State $actualizaParticula(particula, mejorParticula, generacion)$
+          \EndFor
+        \EndFor
+        \caption{Evaluación de función de aptitud y actualización de mejor
+          partícula}
+        \label{alg:pso-simple-eval-1}
+      \end{algorithmic}
+    \end{algorithm}
+
+    % mencionar stack tecnológico (Python, DEAP)
 
 % \chapter{Metodología de evaluación}
 
@@ -454,6 +596,7 @@
   \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017. 
   \bibitem{PSOPopulationSize}A. P. Piotrowski, J. J. Napiorkowski, and A. E. Piotrowska, “Population size in particle swarm optimization,” Swarm and Evolutionary Computation, vol. 58, May 2020. 
   \bibitem{MarshallLab}The Marshall Lab at UC Berkeley. (s. f.). THE MARSHALL LAB. https://www.marshalllab.com/
+  \bibitem{ShapeUp}R. Singer, “Shape up V 1.8, 2019 edition,” Shape Up: Stop Running in Circles and Ship Work that Matters, 2019. [Online]. Available: https://basecamp.com/shapeup/webbook. [Accessed: 03-May-2022]. 
 \end{thebibliography}
 
 \end{document}
