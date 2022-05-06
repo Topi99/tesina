@@ -579,6 +579,20 @@
     análisis y manipulación de datos en la solución, así como la creación de
     gráficas rápida y sencillamente.
 
+    Además de análisis y manipulación de datos, la solución depende de una
+    herramienta que permite realizar operaciones con vectores y matrices. El
+    paquete por default en el ecosistema de Python es NumPy, el cual ofrece
+    funciones matemáticas y de vectorización. Escrito en código optimizado de C
+    y con una interfaz para Python, ofrece gran eficiencia y oportunidades de 
+    paralelización en sus operaciones \cite{NumPyDocs}.
+
+    Por último, para la implementación del algoritmo se basa en el paquete DEAP
+    \cite{DEAPDocs}, el cual provee un marco de trabajo para la creación e
+    implementación de algoritmos evolutivos en Python. La implementación del
+    algoritmo genético con el que funciona actualmente MGSurvE está construida
+    con DEAP, por lo que la reutilización de este paquete ayuda el desarrollo de
+    la solución propuesta en este trabajo.
+
 % \chapter{Metodología de evaluación}
 
 % \chapter{Resultados y contribuciones}
@@ -609,6 +623,8 @@
 
   \bibitem{ShapeUp}R. Singer, “Shape up V 1.8, 2019 edition,” Shape Up: Stop Running in Circles and Ship Work that Matters, 2019. [Online]. Available: https://basecamp.com/shapeup/webbook. [Accessed: 03-May-2022]. 
   \bibitem{PandasDocs}“Pandas,” pandas, 02-Apr-2022. [Online]. Available: https://pandas.pydata.org/. [Accessed: 06-May-2022]. 
+  \bibitem{NumPyDocs}NumPy, 2022. [Online]. Available: https://numpy.org/. [Accessed: 06-May-2022]. 
+  \bibitem{DEAPDocs}“DEAP documentation,” DEAP documentation - DEAP 1.3.1 documentation, 22-Jan-2022. [Online]. Available: https://deap.readthedocs.io/en/master/. [Accessed: 06-May-2022]. 
 \end{thebibliography}
 
 \end{document}
