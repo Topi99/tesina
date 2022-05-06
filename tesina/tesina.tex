@@ -531,7 +531,7 @@
     la ecuación \ref{eq:pso-variant-update}. La actualización de posición no se
     ve modificada (ecuación \ref{eq:pso-simple-update-2}) y el algoritmo de
     que evalúa la función de aptitud sufre mínimas variaciones, descritas
-    en el algoritmo \cite{}.
+    en el algoritmo \ref{alg:pso-variant-eval}.
 
     \begin{equation}
       v_{ij} = w v_{ij} + c_1 rand()(p_{ij} - x_{ij}) + c_2 rand()(p_{nj}
@@ -563,11 +563,21 @@
         \EndFor
         \caption{Evaluación de función de aptitud y actualización de mejor
           partícula}
-        \label{alg:pso-simple-eval-1}
+        \label{alg:pso-variant-eval}
       \end{algorithmic}
     \end{algorithm}
 
-    % mencionar stack tecnológico (Python, DEAP)
+    \subsection{Stack tecnológico}
+    MGSurvE, al ser un paquete para ser usado en proyectos desarrollados con el
+    lenguaje de programación Python, da la oportunidad de usar una gran variedad
+    de paquetes, bibliotecas y Frameworks indexadas en el PyPI. A continuación
+    se describe la lista completa de dependencias usadas para la implementación
+    de los algoritmos.
+
+    Como herramienta principal para la manipulación de datos está la biblioteca
+    Pandas \cite{PandasDocs}. Esta herramienta de código libre permite el
+    análisis y manipulación de datos en la solución, así como la creación de
+    gráficas rápida y sencillamente.
 
 % \chapter{Metodología de evaluación}
 
@@ -596,7 +606,9 @@
   \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017. 
   \bibitem{PSOPopulationSize}A. P. Piotrowski, J. J. Napiorkowski, and A. E. Piotrowska, “Population size in particle swarm optimization,” Swarm and Evolutionary Computation, vol. 58, May 2020. 
   \bibitem{MarshallLab}The Marshall Lab at UC Berkeley. (s. f.). THE MARSHALL LAB. https://www.marshalllab.com/
+
   \bibitem{ShapeUp}R. Singer, “Shape up V 1.8, 2019 edition,” Shape Up: Stop Running in Circles and Ship Work that Matters, 2019. [Online]. Available: https://basecamp.com/shapeup/webbook. [Accessed: 03-May-2022]. 
+  \bibitem{PandasDocs}“Pandas,” pandas, 02-Apr-2022. [Online]. Available: https://pandas.pydata.org/. [Accessed: 06-May-2022]. 
 \end{thebibliography}
 
 \end{document}
