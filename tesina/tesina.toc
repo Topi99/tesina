@@ -23,3 +23,5 @@
 \contentsline {section}{\numberline {3.1}Diseño de la solución}{17}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Selección de algoritmo}{17}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Stack tecnológico}{19}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Desarrollo de la solución}{20}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Arquitectura del sistema}{20}{subsection.3.2.1}%

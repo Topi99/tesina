@@ -593,6 +593,36 @@
     con DEAP, por lo que la reutilización de este paquete ayuda el desarrollo de
     la solución propuesta en este trabajo.
 
+  \section{Desarrollo de la solución}
+    \subsection{Arquitectura del sistema}
+
+    El sistema está dividido en diferentes módulos, los cuales, junto con sus
+    interacciones y relaciones, están descritos en la figura
+    \ref{fig:optimization-modules}. Como se puede apreciar en el diagrama, el
+    módulo principal es el llamado $Optimization$. Este cuenta con tres
+    propiedades principales: $toolbox$, el cual almacena todas las herramientas
+    y funciones del algoritmo; $population$, que guarda la lista de todas las
+    partículas involucradas en el algoritmo de optimización; y $best$,
+    representando la mejor partícula de la búsqueda. De igual manera, el módulo
+    $Optimization$ cuenta con diferentes funciones y métodos:
+    $optimize\_traps\_pso$, el cual funciona como $wrapper$ para configurar e
+    inicializar el algoritmo de optimización con los datos de las trampas y un
+    $Landscape$; $pso\_simple$, el primer algoritmo candidato, implementa el PSO
+    original; $pso\_variable\_weight$, el algoritmo con peso inercial variable;
+    $generate\_particle$, crea una partícula nueva para ser usada en el
+    algoritmo; $update\_particle\_simple$, función para actualizar la velocidad y
+    posición de una partícula; $update\_particle\_variable\_weight$, que implementa
+    la función \ref{eq:pso-weight-update} para actualizar los pesos de velocidad
+    de una partícula; y finalmente $create\_toolbox$, el cual crea la caja de
+    herramientas y registra las funciones mencionadas anteriormente para ser
+    usadas por el algoritmo.
+
+    \begin{figure}[ht!]
+      \includegraphics[width=\textwidth]{optimization-modules.jpeg}
+      \caption{Diagrama de clases describiendo los módulos del sistema.}
+      \label{fig:optimization-modules}
+    \end{figure}
+
 % \chapter{Metodología de evaluación}
 
 % \chapter{Resultados y contribuciones}
