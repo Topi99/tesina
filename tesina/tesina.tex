@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
+\usepackage[table]{xcolor}
 
 %Path relative to the .tex file containing the \includegraphics command
 \graphicspath{ {img/} }
@@ -447,67 +448,12 @@
     perteneciente a
     la familia de Particle Swarm Optimization (PSO) es adecuado para resolver
     este problema \cite{SwarmVsEvol,PSOPopulationSize}. Los algoritmos de tipo
-    PSO tienden a comportarse de manera ideal con una población pequeña (de 3
-    a 40 partículas), por lo que necesitan un presupuesto computacional bajo,
+    PSO tienden a comportarse de manera ideal con una población pequeña (de 20
+    a 50 partículas), por lo que necesitan un presupuesto computacional bajo,
     adecuado para resolver el problema presentado anteriormente.
 
-    Se implementaron dos algoritmos como candidatos para la solución de la
-    problemática. El primero, y más simple, es el PSO original propuesto
-    por Kennedy y  Eberhart en \cite{PSODef}. Este algoritmo se divide en dos
-    partes principales: la primera, actualización de la velocidad y posición de
-    una partícula; y segunda, la evaluación de la función de aptitud y
-    actualización de valores óptimos. Las partes del algoritmo están detalladas
-    en las ecuaciones \ref{eq:pso-simple-update-1}, \ref{eq:pso-simple-update-2}
-    y en el algoritmo \ref{alg:pso-simple-eval-1}.
-
-    \begin{equation}
-      v_{ij} = v_{ij} + c_1 rand()(p_{ij} - x_{ij}) + c_2 rand()(p_{nj}
-        - x_{ij})
-      \label{eq:pso-simple-update-1}
-    \end{equation}
-
-    \begin{equation}
-      x_{ij} = x_{ij} + v_{ij}
-      \label{eq:pso-simple-update-2}
-    \end{equation}
-
-    \begin{algorithm}
-      \begin{algorithmic}
-        \State Initialize $mejorParticula \gets None$
-        \ForEach{$generacion \in generaciones$}
-          \ForEach{$particula \in particulas$}
-            \State $particula.aptitud.valores \gets funcionAptitud(particula)$
-
-            \If {not $particula.mejor$ or $particula.mejor.aptitud < particula.aptitud$}
-              \State $particula.mejor \gets$ nueva particula basada en $particula$
-              \State $particula.mejor.aptitud.valores \gets particula.aptitud.valores$
-            \EndIf
-
-            \If {not $mejorParticula$ or $particula.aptitud < particula.aptitud$}
-              \State $mejorParticula \gets$ nueva particula basada en $particula$
-              \State $mejorParticula.aptitud.valores \gets particula.aptitud.valores$
-            \EndIf
-          \EndFor 
-
-          \ForEach{$particula \in particulas$}
-            \State $actualizaParticula(particula, mejorParticula)$
-          \EndFor
-        \EndFor
-        \caption{Evaluación de función de aptitud y actualización de mejor
-          partícula}
-        \label{alg:pso-simple-eval-1}
-      \end{algorithmic}
-    \end{algorithm}
-
-    Las ecuaciones \ref{eq:pso-simple-update-1} y \ref{eq:pso-simple-update-2}
-    corresponden a la primer parte del PSO. En la primer ecuación, se realiza la
-    actualización de la velocidad de la partícula $i$ en la o $j$ con
-    respecto a la mejor partícula $n$. La segunda ecuación describe la
-    actualización de la posición de la partícula con la nueva velocidad
-    calculada. El algoritmo \ref{alg:pso-simple-eval-1} corresponde a la segunda
-    parte del algoritmo.
-
-    El segundo algoritmo candidato como solución del problema es el propuesto
+    Se implementó un algoritmo de PSO como solución a la problemática. Este
+    algoritmo es el propuesto
     en 2020 por Hantash et al \cite{PSOEnergy}. En este algoritmo introducen una
     variación al peso inercial original propuesto por Shi et al \cite{CPSO} en
     1998 (descrito anteriormente en la sub sección \ref{subsec:pso}). Con esta
@@ -516,22 +462,17 @@
     búsqueda global inicialmente y, en las últimas etapas de la búsqueda, se
     prioriza una búsqueda local en cada partícula \cite{CPSO}.
 
+    Este algoritmo se divide en dos
+    partes principales: la primera, actualización de la velocidad y posición de
+    una partícula; y segunda, la evaluación de la función de aptitud y
+    actualización de valores óptimos. Las partes del algoritmo están detalladas
+    en las ecuaciones \ref{eq:pso-variant-update}, \ref{eq:pso-simple-update-2}
+    y en el algoritmo \ref{alg:pso-variant-eval}.
+
     \begin{equation}
       \label{eq:pso-weight-update}
       w = w_{max} e^{(((maxiter - iter) / maxiter) - 1)} - w_{min} 
     \end{equation}
-
-    En la ecuación \ref{eq:pso-weight-update} se muestra el cálculo y
-    actualización del peso inercial. Al ser una función no lineal, se aseguran
-    valores de $w$ más grandes en etapas tempranas de la búsqueda, así como
-    rápida transición a valores más pequeños conforme progresa la búsqueda. Por
-    lo tanto, se asegura una búsqueda global de mínimos con pocas posibilidades
-    de quedar en un mínimo local \cite{APSO2016}. Al aplicar esta variación, la
-    ecuación de actualización de velocidad de una partícula queda descrita en
-    la ecuación \ref{eq:pso-variant-update}. La actualización de posición no se
-    ve modificada (ecuación \ref{eq:pso-simple-update-2}) y el algoritmo de
-    que evalúa la función de aptitud sufre mínimas variaciones, descritas
-    en el algoritmo \ref{alg:pso-variant-eval}.
 
     \begin{equation}
       v_{ij} = w v_{ij} + c_1 rand()(p_{ij} - x_{ij}) + c_2 rand()(p_{nj}
@@ -539,7 +480,26 @@
       \label{eq:pso-variant-update}
     \end{equation}
 
-    \begin{algorithm}
+    \begin{equation}
+      x_{ij} = x_{ij} + v_{ij}
+      \label{eq:pso-simple-update-2}
+    \end{equation}
+
+    En la ecuación \ref{eq:pso-weight-update} se muestra el cálculo y
+    actualización del peso inercial. Al ser una función no lineal, se aseguran
+    valores de $w$ más grandes en etapas tempranas de la búsqueda, así como
+    rápida transición a valores más pequeños conforme progresa la búsqueda. Por
+    lo tanto, se asegura una búsqueda global de mínimos con pocas posibilidades
+    de quedar en un mínimo local \cite{APSO2016}. 
+
+    Las ecuaciones \ref{eq:pso-variant-update} y \ref{eq:pso-simple-update-2}
+    corresponden a la primer parte del PSO. En la primer ecuación, se realiza la
+    actualización de la velocidad de la partícula $i$ en la o $j$ con
+    respecto a la mejor partícula $n$. La segunda ecuación describe la
+    actualización de la posición de la partícula con la nueva velocidad
+    calculada.
+
+    \begin{algorithm}[ht!]
       \begin{algorithmic}
         \State Initialize $mejorParticula \gets None$
         \ForEach{$generacion \in generaciones$}
@@ -596,6 +556,9 @@
   \section{Desarrollo de la solución}
     \subsection{Arquitectura del sistema}
 
+    Al tener el stack tecnológico con todas las herramientas necesarias
+    seleccionadas, la implementación de los algoritmos candidatos se hizo por
+    módulos.
     El sistema está dividido en diferentes módulos, los cuales, junto con sus
     interacciones y relaciones, están descritos en la figura
     \ref{fig:optimization-modules}. Como se puede apreciar en el diagrama, el
@@ -610,12 +573,12 @@
     $Landscape$; $pso\_simple$, el primer algoritmo candidato, implementa el PSO
     original; $pso\_variable\_weight$, el algoritmo con peso inercial variable;
     $generate\_particle$, crea una partícula nueva para ser usada en el
-    algoritmo; $update\_particle\_simple$, función para actualizar la velocidad y
-    posición de una partícula; $update\_particle\_variable\_weight$, que implementa
-    la función \ref{eq:pso-weight-update} para actualizar los pesos de velocidad
-    de una partícula; y finalmente $create\_toolbox$, el cual crea la caja de
-    herramientas y registra las funciones mencionadas anteriormente para ser
-    usadas por el algoritmo.
+    algoritmo; $update\_particle\_simple$, función para actualizar la velocidad
+    y posición de una partícula; $update\_particle\_variable\_weight$, que
+    implementa la función \ref{eq:pso-weight-update} para actualizar los pesos
+    de velocidad de una partícula; y finalmente $create\_toolbox$, el cual crea
+    la caja de herramientas y registra las funciones mencionadas anteriormente
+    para ser usadas por el algoritmo.
 
     \begin{figure}[ht!]
       \includegraphics[width=\textwidth]{optimization-modules.jpeg}
@@ -623,7 +586,162 @@
       \label{fig:optimization-modules}
     \end{figure}
 
-% \chapter{Metodología de evaluación}
+    \subsection{Selección de parámetros}
+
+    Los algoritmos candidatos a solución, al pertenecer a la familia de PSO,
+    necesitan una configuración de parámetros como el número de generaciones en
+    las que el algoritmo ejecutará la búsqueda; el tamaño de la población con la
+    que se ejecutará la búsqueda y más.
+
+    Se realizó una búsqueda de parámetros comparando los resultados de ejecutar
+    la optimización con una misma configuración del entorno y con distintas
+    combinaciones de parámetros. La Tabla \ref{table:params-options} contiene
+    los diferentes parámetros con que el algoritmo de optimización fue
+    ejecutado.
+
+    \begin{table}[ht!]
+      \caption{Todas las opciones de parámetros}
+      \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          Generations & Population Size & Min Speed & Max Speed \\
+          \hline
+          60 & 12 & -5 & 5 \\
+          \hline
+          100 & 20 & -10 & 10 \\
+          \hline
+          250 & 40 & -20 & 20 \\
+          \hline
+        \end{tabular}
+        \label{table:params-options}
+      \end{center}
+    \end{table}
+
+    Los resultados de esta búsqueda de mejores parámetros se muestran en la
+    tabla \ref{table:params-results}. Las filas resaltadas en verde claro
+    muestran las 5 configuraciones que arrojaron los mejores resultados.
+    Resaltado en verde oscuro, se muestra el mejor resultado obtenido en la
+    búsqueda. Como se puede ver en la tabla, 3 de los 5 mejores resultados
+    fueron obtenidos con la velocidad máxima más grande (20) y la mínima más
+    pequeña (-20) de la búsqueda. Los dos resultados restantes fueron obtenidos
+    con el segundo conjunto de velocidad máxima y mínima más grandes (10 y -10).
+    De igual manera, los 3 mejores resultados fueron obtenidos con una población
+    más grande (de 40 partículas) y los 2 restantes con la población más pequeña
+    (12 partículas). Se puede concluir que las grandes velocidades favorecen la
+    búsqueda, pues tienen mejores oportunidades de encontrar el máximo global en
+    las etapas tempranas de la búsqueda. Adicionalmente, los resultados finales
+    dependen de la posición inicial de las trampas, por eso se llega a buenos
+    resultados con poblaciones y velocidades pequeñas. 
+
+    Para finalizar, se seleccionaron 20 y -20 como velocidad máxima
+    y mínima. Además, como población se optó por 40 partículas, pues se
+    obtuvieron mejores resultados con esta cantidad de población.
+    Además, como parámetros de peso ($w$) máximo y mínimo se seleccionaron 1.5 y
+    0.9, para lograr aún mejores búsquedas globales al principio del algoritmo y
+    mejores búsquedas locales en las etapas finales. Para las generaciones, se
+    puede apreciar en la tabla que entre más generaciones, mejores son los
+    resultados, por esto, se usarán 500 generaciones para el algoritmo.
+    
+    \begin{table}[ht!]
+      \caption{Todas las opciones de parámetros}
+      \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+          \hline
+          Generations & Population Size & Min Speed & Max Speed & Result \\
+          \hline
+          60 & 12 & -5 & 5 & 1.8791204126407515 \\
+          \hline
+          60 & 12 & -10 & 10 & 1.854472081926861 \\
+          \hline
+          60 & 12 & -20 & 20 & 1.7786048508569845 \\
+          \hline
+          100 & 12 & -5 & 5 & 1.889419981984948 \\
+          \hline
+          100 & 12 & -10 & 10 & 1.792037919645934 \\
+          \hline
+          100 & 12 & -20 & 20 & 1.7762766933444907 \\
+          \hline
+          250 & 12 & -5 & 5 & 1.8223052674989841 \\
+          \hline
+          \rowcolor[HTML]{CCEEBB}
+          250 & 12 & -10 & 10 & 1.7020892249484525 \\
+          \hline
+          \rowcolor[HTML]{CCEEBB}
+          250 & 12 & -20 & 20 & 1.6973861840071303 \\
+          \hline
+          60 & 20 & -5 & 5 & 1.946892980601416 \\
+          \hline
+          60 & 20 & -10 & 10 & 1.8155848546439979 \\
+          \hline
+          60 & 20 & -20 & 20 & 1.7660035785241515 \\
+          \hline
+          100 & 20 & -5 & 5 & 1.9190327079716116 \\
+          \hline
+          100 & 20 & -10 & 10 & 1.8385524029284064 \\
+          \hline
+          100 & 20 & -20 & 20 & 1.7454720709718743 \\
+          \hline
+          250 & 20 & -5 & 5 & 1.7753419398392813 \\
+          \hline
+          250 & 20 & -10 & 10 & 1.7288295236897566 \\
+          \hline
+          250 & 20 & -20 & 20 & 1.719394288260472 \\
+          \hline
+          60 & 40 & -5 & 5 & 1.7829790561139625 \\
+          \hline
+          60 & 40 & -10 & 10 & 1.7781548863988543 \\
+          \hline
+          \rowcolor[HTML]{CCEEBB}
+          60 & 40 & -20 & 20 & \cellcolor[HTML]{00AB67} 1.6888903722371744 \\
+          \hline
+          100 & 40 & -5 & 5 & 1.7700261955393908 \\
+          \hline
+          100 & 40 & -10 & 10 & 1.7621531972103135 \\
+          \hline
+          \rowcolor[HTML]{CCEEBB}
+          100 & 40 & -20 & 20 & 1.6960049662452084 \\
+          \hline
+          250 & 40 & -5 & 5 & 1.7431968794349013 \\
+          \hline
+          \rowcolor[HTML]{CCEEBB}
+          250 & 40 & -10 & 10 & 1.6930355821506797 \\
+          \hline
+          250 & 40 & -20 & 20 & 1.7236008409661523 \\
+          \hline
+        \end{tabular}
+        \label{table:params-results}
+      \end{center}
+    \end{table}
+
+    \subsection{Integración con el paquete MGSurvE}
+
+    Para terminar esta sección de descripción de la solución, a continuación se
+    describe la integración del algoritmo propuesto al paquete MGSurvE. El
+    paquete, al ya contar con una función de optimización entre sus
+    herramientas, integrar un nuevo algoritmo con la misma funcionalidad no fue
+    complicado ni laborioso. Se añadió una clase llamada $PSO$, la cual tiene
+    una interfaz similar a la del algoritmo de GA actual de MGSurvE. Los
+    argumentos que recibe el constructor de la clase son: landscape, el objeto
+    del paquete MGSurvE que contiene información del entorno, trampas y
+    migración de mosquitos; pop\_size, el tamaño de la población; generations,
+    en donde se especifican el número de generaciones en las que el algoritmo
+    correrá; speed\_min, la velocidad mínima de las partículas; speed\_max, la
+    velocidad máxima de las partículas; phi1, límite superior para generar
+    números aleatorios para influenciar la búsqueda local; phi2, límite superior
+    para generar números aleatorios para influenciar la búsqueda global; w\_max,
+    peso inercial máximo; y finalmente, w\_min, peso inercial mínimo.
+    
+    El PSO, además de ser compatible con la configuración del Landscape, también
+    genera un logbook con los mismos datos generados por el GA, para así
+    permitir la comparación de ambos métodos de optimización. 
+
+\chapter{Metodología de evaluación}
+
+  En este capítulo se describe la metodología de evaluación seleccionada para
+  validar que se ha resuelto la problemática identificada en este trabajo. A
+  continuación, se describen la técnica usada para evaluar el desempeño del
+  algoritmo implementado como solución, así como las métricas que se obtendrán
+  para confirmar la efectividad de la solución.
 
 % \chapter{Resultados y contribuciones}
 

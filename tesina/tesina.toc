@@ -22,6 +22,9 @@
 \contentsline {chapter}{\numberline {3}Solución}{17}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Diseño de la solución}{17}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Selección de algoritmo}{17}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Stack tecnológico}{19}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Desarrollo de la solución}{20}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Arquitectura del sistema}{20}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.1.2}Stack tecnológico}{18}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Desarrollo de la solución}{19}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Arquitectura del sistema}{19}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Selección de parámetros}{20}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Integración con el paquete MGSurvE}{22}{subsection.3.2.3}%
+\contentsline {chapter}{\numberline {4}Metodología de evaluación}{24}{chapter.4}%
