@@ -26,5 +26,7 @@
 \contentsline {section}{\numberline {3.2}Desarrollo de la solución}{19}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Arquitectura del sistema}{19}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Selección de parámetros}{20}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Integración con el paquete MGSurvE}{22}{subsection.3.2.3}%
-\contentsline {chapter}{\numberline {4}Metodología de evaluación}{24}{chapter.4}%
+\contentsline {subsection}{\numberline {3.2.3}Integración con el paquete MGSurvE}{20}{subsection.3.2.3}%
+\contentsline {chapter}{\numberline {4}Metodología de evaluación}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Resultados y contribuciones}{24}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Búsqueda de mejores parámetros}{24}{section.5.1}%
