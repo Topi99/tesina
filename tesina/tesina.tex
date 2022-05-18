@@ -577,7 +577,7 @@
       \label{fig:optimization-modules}
     \end{figure}
 
-    \subsection{Selección de parámetros}
+    \subsection{Selección de parámetros}\label{subsect:seleccion-params}
 
     Los algoritmos de tipo PSO necesitan una configuración de parámetros, como
     el número de generaciones en las que el algoritmo ejecutará la búsqueda;
@@ -635,10 +635,97 @@
 
   En este capítulo se describe la metodología de evaluación seleccionada para
   validar que se ha resuelto la problemática identificada en este trabajo. A
-  continuación, se describen la técnica usada para evaluar el desempeño del
+  continuación, se describe la técnica usada para evaluar el desempeño del
   algoritmo implementado como solución, así como las métricas que se obtendrán
   para confirmar la efectividad de la solución.
 
+  \section{Selección de parámetros}
+
+    Los algoritmos de tipo PSO necesitan una configuración de parámetros, como
+    el número de generaciones en las que el algoritmo ejecutará la búsqueda;
+    el tamaño de la población con la que se ejecutará la búsqueda y más.
+
+    Se realizó una búsqueda de parámetros comparando los resultados de ejecutar
+    la optimización con una misma configuración del entorno y con distintas
+    combinaciones de parámetros. La Tabla \ref{table:params-options} contiene
+    los diferentes parámetros con que el algoritmo de optimización fue
+    ejecutado. En la sección \ref{sect:busqueda-mejores-params} se explicarán
+    los resultados de esta búsqueda a detalle.
+
+    \begin{table}[ht!]
+      \caption{Todas las opciones de parámetros}
+      \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          Generations & Population Size & Min Speed & Max Speed \\
+          \hline
+          60 & 12 & -5 & 5 \\
+          \hline
+          100 & 20 & -10 & 10 \\
+          \hline
+          250 & 40 & -20 & 20 \\
+          \hline
+        \end{tabular}
+        \label{table:params-options}
+      \end{center}
+    \end{table}
+
+  \section{Comparación de métodos}
+    
+    Se determinó que la mejor manera de evaluar el desempeño del algoritmo
+    propuesto en este trabajo es una comparación directa entre el algoritmo PSO 
+    y el algoritmo existente en MGSurvE. Para esto, primero se realizó una
+    búsqueda de mejores parámetros (mencionada en la sub sección
+    \ref{subsect:seleccion-params}), para así tener una referencia de con qué
+    tipo de parámetros el algoritmo PSO funciona mejor. Después, con los mejores
+    parámetros encontrados, se comparará contra el GA en un entorno generado por
+    el mismo MGSurvE. A continuación se detallará todo el procedimiento. 
+
+    \subsection{Generación del entorno de evaluación}
+ 
+    Para generar el entorno de evaluación se utilizó la función $ptsDonut$ de
+    MGSurvE, la cual genera una distribución de puntos en forma de dona. Como
+    argumentos, se le indicó que generara 200 puntos y un radio mínimo de la
+    dona de 75 unidades y un máximo de 100 unidades. El resultado de ejecutar
+    esta función es el mostrado en la Figura \ref{fig:evaluation-env}. Este
+    entorno cuenta con 4 trampas, cuyas ubicaciones serán optimizadas. Para
+    facilitar el uso de este entorno, se guardaron los datos generados por
+    MGSurvE en un archivo pickle, para después ser cargado por el programa de
+    comparación de métodos. 
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{eval-env.png}
+      \caption{Entorno generado para la evaluación del algoritmo PSO.}
+      \label{fig:evaluation-env}
+    \end{figure}
+
+    \subsection{Ejecución de optimizaciones}
+
+    Para facilitar la ejecución de ambos algoritmos con un mismo entorno, se
+    escribió un programa que primero lee la información del entorno generado
+    previamente, para después correr los dos métodos de optimización (PSO y
+    GA). Los datos de cada ejecución de los algoritmos fueron exportados a
+    archivos CSV para después ser analizados y graficados por un programa
+    diferente. Este programa se ejecutó múltiples veces para tener variedad en
+    los resultados.
+
+    \subsection{Métricas}
+
+    Una vez exportados los datos de las optimizaciones, se obtuvieron tres
+    métricas que ayudan a validar el desempeño del algoritmo propuesto en este
+    trabajo: tiempo de ejecución de la optimización, esto ayuda a verificar si
+    el algoritmo PSO es más rápido que la implementación actual en MGSurvE;
+    generación en la que se encuentra el valor óptimo, así se sabe qué algoritmo
+    encuentra el valor mínimo más rápido; y valor mínimo de detección de
+    mosquitos, esta métrica es la principal para saber si el PSO es mejor
+    optimizando las ubicaciones de las trampas a comparación del GA. Además de
+    estas métricas, con los archivos CSV exportados por las optimizaciones,
+    se puede graficar el desempeño del PSO y GA, para así cotejar el
+    comportamiento de búsqueda de cada algoritmo.
+
+    En el siguiente capítulo se presentan los resultados obtenidos de esta
+    comparación.
 
 \chapter{Resultados y contribuciones}
 
@@ -659,8 +746,8 @@
     dependen de la posición inicial de las trampas, por eso se llega a buenos
     resultados con poblaciones y velocidades pequeñas. 
 
-    Para finalizar, se seleccionaron 20 y -20 como velocidad máxima
-    y mínima. Además, como población se optó por 40 partículas, pues se
+    Así mismo, se seleccionaron 20 y -20 como velocidad máxima
+    y mínima. Igualmente, como población se optó por 40 partículas, pues se
     obtuvieron mejores resultados con esta cantidad de población.
     Además, como parámetros de peso ($w$) máximo y mínimo se seleccionaron 1.5 y
     0.9, para lograr aún mejores búsquedas globales al principio del algoritmo y

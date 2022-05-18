@@ -28,5 +28,10 @@
 \contentsline {subsection}{\numberline {3.2.2}Selección de parámetros}{20}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Integración con el paquete MGSurvE}{20}{subsection.3.2.3}%
 \contentsline {chapter}{\numberline {4}Metodología de evaluación}{23}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Resultados y contribuciones}{24}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Búsqueda de mejores parámetros}{24}{section.5.1}%
+\contentsline {section}{\numberline {4.1}Selección de parámetros}{23}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Comparación de métodos}{24}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Generación del entorno de evaluación}{24}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Ejecución de optimizaciones}{24}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Métricas}{24}{subsection.4.2.3}%
+\contentsline {chapter}{\numberline {5}Resultados y contribuciones}{26}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Búsqueda de mejores parámetros}{26}{section.5.1}%
