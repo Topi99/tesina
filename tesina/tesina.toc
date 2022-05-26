@@ -25,13 +25,13 @@
 \contentsline {subsection}{\numberline {3.1.2}Stack tecnológico}{18}{subsection.3.1.2}%
 \contentsline {section}{\numberline {3.2}Desarrollo de la solución}{19}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Arquitectura del sistema}{19}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Selección de parámetros}{20}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Integración con el paquete MGSurvE}{20}{subsection.3.2.3}%
-\contentsline {chapter}{\numberline {4}Metodología de evaluación}{23}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Selección de parámetros}{23}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Comparación de métodos}{24}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Generación del entorno de evaluación}{24}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Ejecución de optimizaciones}{24}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Métricas}{24}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {3.2.2}Integración con el paquete MGSurvE}{20}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Metodología de evaluación}{22}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Hardware}{22}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Selección de parámetros}{22}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Comparación de métodos}{23}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Generación del entorno de evaluación}{23}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Ejecución de optimizaciones}{23}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Métricas}{24}{subsection.4.3.3}%
 \contentsline {chapter}{\numberline {5}Resultados y contribuciones}{26}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Búsqueda de mejores parámetros}{26}{section.5.1}%

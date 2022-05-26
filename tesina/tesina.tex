@@ -577,37 +577,6 @@
       \label{fig:optimization-modules}
     \end{figure}
 
-    \subsection{Selección de parámetros}\label{subsect:seleccion-params}
-
-    Los algoritmos de tipo PSO necesitan una configuración de parámetros, como
-    el número de generaciones en las que el algoritmo ejecutará la búsqueda;
-    el tamaño de la población con la que se ejecutará la búsqueda y más.
-
-    Se realizó una búsqueda de parámetros comparando los resultados de ejecutar
-    la optimización con una misma configuración del entorno y con distintas
-    combinaciones de parámetros. La Tabla \ref{table:params-options} contiene
-    los diferentes parámetros con que el algoritmo de optimización fue
-    ejecutado. En la sección \ref{sect:busqueda-mejores-params} se explicarán
-    los resultados de esta búsqueda a detalle.
-
-    \begin{table}[ht!]
-      \caption{Todas las opciones de parámetros}
-      \begin{center}
-        \begin{tabular}{|c|c|c|c|}
-          \hline
-          Generations & Population Size & Min Speed & Max Speed \\
-          \hline
-          60 & 12 & -5 & 5 \\
-          \hline
-          100 & 20 & -10 & 10 \\
-          \hline
-          250 & 40 & -20 & 20 \\
-          \hline
-        \end{tabular}
-        \label{table:params-options}
-      \end{center}
-    \end{table}
-
     \subsection{Integración con el paquete MGSurvE}
 
     Para terminar esta sección de descripción de la solución, a continuación se
@@ -639,31 +608,41 @@
   algoritmo implementado como solución, así como las métricas que se obtendrán
   para confirmar la efectividad de la solución.
 
+  \section{Hardware}
+
+    La evaluación del algoritmo propuesto en este trabajo se realizó en una
+    MacBook Pro 2020, con un procesador Intel Core i7 de 2.6 GHz con 6 núcleos y
+    memoria de 16 GB 2667 MHz DDR4.
+
   \section{Selección de parámetros}
 
     Los algoritmos de tipo PSO necesitan una configuración de parámetros, como
-    el número de generaciones en las que el algoritmo ejecutará la búsqueda;
-    el tamaño de la población con la que se ejecutará la búsqueda y más.
+    el tamaño de la población con la que se ejecutará la búsqueda y las
+    velocidades mínima y máxima.
 
     Se realizó una búsqueda de parámetros comparando los resultados de ejecutar
-    la optimización con una misma configuración del entorno y con distintas
-    combinaciones de parámetros. La Tabla \ref{table:params-options} contiene
-    los diferentes parámetros con que el algoritmo de optimización fue
-    ejecutado. En la sección \ref{sect:busqueda-mejores-params} se explicarán
-    los resultados de esta búsqueda a detalle.
+    la optimización con un mismo entorno entorno y con distintas
+    configuraciones de parámetros. La Tabla \ref{table:params-options} contiene
+    las diferentes configuraciones con que el algoritmo de
+    optimización fue ejecutado. Se ejecutó 5 veces un PSO con cada
+    configuración, para así obtener promedios de los resultados arrojados
+    por cada una. En la sección \ref{sect:busqueda-mejores-params} se explicarán
+    a detalle los resultados de esta búsqueda.
 
     \begin{table}[ht!]
       \caption{Todas las opciones de parámetros}
       \begin{center}
         \begin{tabular}{|c|c|c|c|}
           \hline
-          Generations & Population Size & Min Speed & Max Speed \\
+          Configuración & Tamaño de población & Velocidad Mínima & Velocidad Máxima \\
           \hline
-          60 & 12 & -5 & 5 \\
+          1 & 12 & -5 & 5 \\
           \hline
-          100 & 20 & -10 & 10 \\
+          2 & 12 & -20 & 20 \\
           \hline
-          250 & 40 & -20 & 20 \\
+          3 & 40 & -5 & 5 \\
+          \hline
+          4 & 40 & -20 & 20 \\
           \hline
         \end{tabular}
         \label{table:params-options}
@@ -675,8 +654,7 @@
     Se determinó que la mejor manera de evaluar el desempeño del algoritmo
     propuesto en este trabajo es una comparación directa entre el algoritmo PSO 
     y el algoritmo existente en MGSurvE. Para esto, primero se realizó una
-    búsqueda de mejores parámetros (mencionada en la sub sección
-    \ref{subsect:seleccion-params}), para así tener una referencia de con qué
+    búsqueda de mejores parámetros, para así tener una referencia de con qué
     tipo de parámetros el algoritmo PSO funciona mejor. Después, con los mejores
     parámetros encontrados, se comparará contra el GA en un entorno generado por
     el mismo MGSurvE. A continuación se detallará todo el procedimiento. 
@@ -685,7 +663,7 @@
  
     Para generar el entorno de evaluación se utilizó la función $ptsDonut$ de
     MGSurvE, la cual genera una distribución de puntos en forma de dona. Como
-    argumentos, se le indicó que generara 200 puntos y un radio mínimo de la
+    parámetros, se le indicó que generara 200 puntos en un radio mínimo de la
     dona de 75 unidades y un máximo de 100 unidades. El resultado de ejecutar
     esta función es el mostrado en la Figura \ref{fig:evaluation-env}. Este
     entorno cuenta con 4 trampas, cuyas ubicaciones serán optimizadas. Para
@@ -705,10 +683,10 @@
     Para facilitar la ejecución de ambos algoritmos con un mismo entorno, se
     escribió un programa que primero lee la información del entorno generado
     previamente, para después correr los dos métodos de optimización (PSO y
-    GA). Los datos de cada ejecución de los algoritmos fueron exportados a
-    archivos CSV para después ser analizados y graficados por un programa
-    diferente. Este programa se ejecutó múltiples veces para tener variedad en
-    los resultados.
+    GA). Este programa ejecuta 20 veces el PSO y 20 veces el GA, para así
+    obtener mejores estadísticas de los datos generados (como los promedios, y
+    percentiles). Los datos generados por el programa se almacenaron en
+    estructuras de datos para, posteriormente, generar visualizaciones de estos.
 
     \subsection{Métricas}
 
@@ -719,112 +697,128 @@
     generación en la que se encuentra el valor óptimo, así se sabe qué algoritmo
     encuentra el valor mínimo más rápido; y valor mínimo de detección de
     mosquitos, esta métrica es la principal para saber si el PSO es mejor
-    optimizando las ubicaciones de las trampas a comparación del GA. Además de
-    estas métricas, con los archivos CSV exportados por las optimizaciones,
-    se puede graficar el desempeño del PSO y GA, para así cotejar el
-    comportamiento de búsqueda de cada algoritmo.
+    optimizando las ubicaciones de las trampas a comparación del GA y
+    determinará si se cumplió el objetivo.
 
     En el siguiente capítulo se presentan los resultados obtenidos de esta
-    comparación.
+    evaluación.
 
 \chapter{Resultados y contribuciones}
+  En este capítulo se describirán a detalle los resultados obtenidos de la
+  evaluación del algoritmo PSO presentado en este trabajo, así como las
+  contribuciones logradas.
 
   \section{Búsqueda de mejores parámetros}\label{sect:busqueda-mejores-params}
-    Los resultados de esta búsqueda de mejores parámetros se muestran en la
-    tabla \ref{table:params-results}. Las filas resaltadas en verde claro
-    muestran las 5 configuraciones que arrojaron los mejores resultados.
-    Resaltado en verde oscuro, se muestra el mejor resultado obtenido en la
-    búsqueda. Como se puede ver en la tabla, 3 de los 5 mejores resultados
-    fueron obtenidos con la velocidad máxima más grande (20) y la mínima más
-    pequeña (-20) de la búsqueda. Los dos resultados restantes fueron obtenidos
-    con el segundo conjunto de velocidad máxima y mínima más grandes (10 y -10).
-    De igual manera, los 3 mejores resultados fueron obtenidos con una población
-    más grande (de 40 partículas) y los 2 restantes con la población más pequeña
-    (12 partículas). Se puede concluir que las grandes velocidades favorecen la
-    búsqueda, pues tienen mejores oportunidades de encontrar el máximo global en
-    las etapas tempranas de la búsqueda. Adicionalmente, los resultados finales
-    dependen de la posición inicial de las trampas, por eso se llega a buenos
-    resultados con poblaciones y velocidades pequeñas. 
+    Los resultados de la búsqueda de mejor configuración para el PSO se muestran
+    en la tabla \ref{table:params-results}. En color verde se resalta la
+    configuración con el mejor promedio de resultados. Como se puede ver en la
+    tabla, la configuración 4 de parámetros fue la que arrojó un mejor valor
+    mínimo de detección de mosquitos, seguida de cerca por la configuración 2,
+    enseguida la 3 y muy por detrás la configuración 1. La principal causa de
+    que la configuración 1 y 2 obtuvieran resultados muy similares son las
+    velocidades mínima y máxima, pues ocasionan búsquedas amplias al inicio del
+    algoritmo, encontrando así los mínimos globales rápidamente. Sin embargo,
+    hay una gran diferencia de más de 45 segundos en el tiempo de ejecución
+    promedio, esto debido a la diferencia entre el tamaño de población.
 
-    Así mismo, se seleccionaron 20 y -20 como velocidad máxima
-    y mínima. Igualmente, como población se optó por 40 partículas, pues se
-    obtuvieron mejores resultados con esta cantidad de población.
-    Además, como parámetros de peso ($w$) máximo y mínimo se seleccionaron 1.5 y
-    0.9, para lograr aún mejores búsquedas globales al principio del algoritmo y
-    mejores búsquedas locales en las etapas finales. Para las generaciones, se
-    puede apreciar en la tabla que entre más generaciones, mejores son los
-    resultados, por esto, se usarán 500 generaciones para el algoritmo.
+    Para comprender y analizar mejor el comportamiento de cada configuración,
+    se presenta la Figura \ref{fig:params-search-lines}, en la cual se grafica
+    el comportamiento del PSO con cada configuración. En esta gráfica se
+    aprecian 5 líneas por cada configuración, para así entender su
+    comportamiento general. En la gráfica que se ve la similitud entre las
+    configuraciones 2 y 4, sin embargo, la configuración 4 comienza a encontrar
+    mejores resultados que la 2 en menos generaciones. Así mismo, se aprecia en
+    la gráfica que las configuraciones 2 y 4 se atoran en menos mínimos locales,
+    y la configuración 4 lo hace menos que la 2.
+
+    Por lo tanto, se seleccionaron 20 y -20 como velocidad máxima y mínima.
+    Igualmente, como población para la etapa de comparación contra el algoritmo
+    genético se optó por 40 partículas, pues se obtuvieron mejores resultados en
+    menor cantidad de generaciones con este tamaño de población. Además, como
+    parámetros de peso ($w$) máximo y mínimo se seleccionaron 1.5 y 0.9, para
+    lograr aún mejores búsquedas globales al principio del algoritmo y mejores
+    búsquedas locales en las etapas finales. Para las generaciones, se puede
+    apreciar en la Figura \ref{fig:params-search-lines} que entre más
+    generaciones, mejores son los resultados, por esto, se usarán 500
+    generaciones para la comparación de algoritmos.
     
     \begin{table}[ht!]
-      \caption{Resultados de comparación de parámetros}
+      \caption{
+        Resultados de comparación de las diferentes configuraciones de
+        parámetros para el PSO (Tabla \ref{table:params-options}).
+      }
       \begin{center}
-        \begin{tabular}{|c|c|c|c|c|}
+        \begin{tabular}{|c|c|c|}
           \hline
-          Generations & Population Size & Min Speed & Max Speed & Result \\
+          Configuración & Resultado promedio (días) & Tiempo de ejecución
+            promedio (segundos) \\
           \hline
-          60 & 12 & -5 & 5 & 1.8791204126407515 \\
+          1 & 1.654883190977614 & 15.095740842819215 \\
           \hline
-          60 & 12 & -10 & 10 & 1.854472081926861 \\
+          2 & 1.5887967821719775 & 15.379290246963501 \\
           \hline
-          60 & 12 & -20 & 20 & 1.7786048508569845 \\
-          \hline
-          100 & 12 & -5 & 5 & 1.889419981984948 \\
-          \hline
-          100 & 12 & -10 & 10 & 1.792037919645934 \\
-          \hline
-          100 & 12 & -20 & 20 & 1.7762766933444907 \\
-          \hline
-          250 & 12 & -5 & 5 & 1.8223052674989841 \\
+          3 & 1.5999659131506383 & 50.010193014144896 \\
           \hline
           \rowcolor[HTML]{CCEEBB}
-          250 & 12 & -10 & 10 & 1.7020892249484525 \\
-          \hline
-          \rowcolor[HTML]{CCEEBB}
-          250 & 12 & -20 & 20 & 1.6973861840071303 \\
-          \hline
-          60 & 20 & -5 & 5 & 1.946892980601416 \\
-          \hline
-          60 & 20 & -10 & 10 & 1.8155848546439979 \\
-          \hline
-          60 & 20 & -20 & 20 & 1.7660035785241515 \\
-          \hline
-          100 & 20 & -5 & 5 & 1.9190327079716116 \\
-          \hline
-          100 & 20 & -10 & 10 & 1.8385524029284064 \\
-          \hline
-          100 & 20 & -20 & 20 & 1.7454720709718743 \\
-          \hline
-          250 & 20 & -5 & 5 & 1.7753419398392813 \\
-          \hline
-          250 & 20 & -10 & 10 & 1.7288295236897566 \\
-          \hline
-          250 & 20 & -20 & 20 & 1.719394288260472 \\
-          \hline
-          60 & 40 & -5 & 5 & 1.7829790561139625 \\
-          \hline
-          60 & 40 & -10 & 10 & 1.7781548863988543 \\
-          \hline
-          \rowcolor[HTML]{CCEEBB}
-          60 & 40 & -20 & 20 & \cellcolor[HTML]{00AB67} 1.6888903722371744 \\
-          \hline
-          100 & 40 & -5 & 5 & 1.7700261955393908 \\
-          \hline
-          100 & 40 & -10 & 10 & 1.7621531972103135 \\
-          \hline
-          \rowcolor[HTML]{CCEEBB}
-          100 & 40 & -20 & 20 & 1.6960049662452084 \\
-          \hline
-          250 & 40 & -5 & 5 & 1.7431968794349013 \\
-          \hline
-          \rowcolor[HTML]{CCEEBB}
-          250 & 40 & -10 & 10 & 1.6930355821506797 \\
-          \hline
-          250 & 40 & -20 & 20 & 1.7236008409661523 \\
+          4 & 1.5770302194541654 & 60.24051342010498 \\
           \hline
         \end{tabular}
         \label{table:params-results}
       \end{center}
     \end{table}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{params-search-lines.png}
+      \caption{
+        Comportamiento del PSO con diferentes configuraciones. En rojo se
+        muestran las ejecuciones de la configuración 1; en verde la
+        configuración 2; en azul la configuración 3; y en amarillo la 4.
+      }
+      \label{fig:params-search-lines}
+    \end{figure}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{average-results.png}
+      \caption{Comportamiento de PSO y GA}
+      \label{fig:average-results}
+    \end{figure}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{percentile.png}
+      \caption{Bandas de percentiles de resultados de PSO y GA}
+      \label{fig:percentile}
+    \end{figure}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{pso-best.png}
+      \caption{Mejor resultado PSO}
+      \label{fig:pso-best}
+    \end{figure}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{ga-best.png}
+      \caption{Mejor resultado GA}
+      \label{fig:ga-best}
+    \end{figure}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{pso-worst.png}
+      \caption{Peor resultado PSO}
+      \label{fig:pso-worst}
+    \end{figure}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=\textwidth]{ga-worst.png}
+      \caption{Peor resultado GA}
+      \label{fig:ga-worst}
+    \end{figure}
 
 % \chapter{Conclusiones}
 

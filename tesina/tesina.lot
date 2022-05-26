@@ -2,8 +2,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Todas las opciones de parámetros}}{20}{table.3.1}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Todas las opciones de parámetros}}{23}{table.4.1}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados de comparación de parámetros}}{27}{table.5.1}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados de comparación de las diferentes configuraciones de parámetros para el PSO (Tabla \ref {table:params-options}). }}{27}{table.5.1}%
