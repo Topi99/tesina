@@ -9,6 +9,12 @@
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 \usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Overleaf}
+\lhead{\thepage}
 
 %Path relative to the .tex file containing the \includegraphics command
 \graphicspath{ {img/} }
@@ -22,7 +28,11 @@
   Particle Swarm Optimization.
 }
 
-\author{Topiltzin Hernández Mares}
+\author{
+  Topiltzin Hernández Mares \\
+  [1cm]{\small Asesor: Dr. Benjamín Valdés}\\
+  \small Asesor: Dr. Héctor Sanches
+}
 
 \begin{document}
 
@@ -33,12 +43,65 @@
 \listoffigures
 \listoftables
 
-% \begin{abstract}
-% \end{abstract}
+\begin{abstract}
+  A pesar de un incremento en las aplicaciones de algoritmos de optimización en
+  los últimos años, no existen muchas aplicaciones en el ámbito del control y
+  monitoreo de mosquitos. Actualmente solo existe MGSurvE, un paquete diseñado
+  para optimizar la posición de trampas para mosquito, sin embargo, su algoritmo
+  de optimización no es el más adecuado para esta tarea. Se desarrolló un
+  algoritmo PSO que busca mejorar los resultados arrojados por MGSurvE. Se
+  registraron mejoras en la cantidad de generaciones necesarias y en los
+  resultados mínimos de detección de mosquitos. 
+\end{abstract}
 
-% \chapter{Introducción}
+\chapter{Introducción}
 
-\chapter{Estado del arte}
+  La investigación presentada en este trabajo se centra en una problemática
+  existente en el paquete para optimización de la ubicación de trampas para
+  mosquito MGSurvE: no se cuenta con el algoritmo adecuado para generar las
+  posiciones óptimas de las trampas. Se propone un algoritmo como solución a
+  esta problemática y se evalúa su eficacia. 
+
+  \section{Motivación}
+
+  En cualquier proyecto se cuentan con recursos finitos para su desarrollo, ya
+  sea dinero, materiales, o en el caso de lo analizado en este trabajo, trampas
+  para mosquitos. Es de suma importancia lograr los mejores resultados con un
+  número finito de trampas para detectar las migraciones de mosquitos.
+
+  \section{Estructura del trabajo}
+
+  El presente reporte está compuesto de 7 capítulos que tratan diferentes puntos
+  de la investigación llevada a cabo.
+
+  En el Capítulo \ref{chap:estado-del-arte}, se presenta una variedad de
+  términos que sirven para dar contexto de este trabajo. En seguida, se
+  presentan y analizan investigaciones relacionadas a la realizada en este
+  reporte.
+
+  En el Capítulo \ref{chap:planteaminto} se presentan las limitaciones de las
+  herramientas actuales y se detalla la problemática identificada.
+
+  A continuación, en el Capítulo \ref{chap:solucion}, se propone una solución
+  a la problemática identificada en el capítulo anterior. Se detallan todos los
+  componentes de la solución, desde el diseño del algoritmo hasta su
+  arquitectura y el tipo de parámetros necesarios para su correcto
+  funcionamiento.
+
+  Una vez propuesta una solución, en el Capítulo \ref{chap:metolodogia} se
+  detalla la metodología usada para evaluar la efectividad del algoritmo
+  propuesto. Se describe la búsqueda de la mejor configuración para el algoritmo
+  y cómo será comparado con la implementación actual del paquete MGSurvE.
+
+  En seguida, se presentan los resultados de la evaluación en el Capítulo
+  \ref{chap:resultados}. Se presentan una variedad de gráficas y tablas para
+  entender a detalle el comportamiento del algoritmo propuesto en este trabajo.
+
+  Finalmente, en el Capítulo \ref{chap:conclusiones} se presentan las
+  conclusiones, contribuciones logradas y el posible trabajo futuro para mejorar
+  los resultados obtenidos por la solución propuesta.
+
+\chapter{Estado del arte}\label{chap:estado-del-arte}
   Antes de hablar del problema y su solución, es necesario entrar en contexto.
   Por esto, en la primera sección de este capítulo se definirán conceptos
   básicos, tales como trampas para mosquitos, las cuales tienen un papel central
@@ -378,7 +441,7 @@
   posibilidad de mejorar la optimización de la ubicación de las trampas para
   mosquitos.
 
-\chapter{Planteamiento del problema}
+\chapter{Planteamiento del problema}\label{chap:planteaminto}
   Después de analizar diferentes métodos de optimización aplicados en el área de
   este trabajo, el objetivo de este capítulo es describir la problemática en
   la optimización de la ubicación de trampas para mosquito. Para lograrlo, en
@@ -431,7 +494,7 @@
     como: El software MGSurvE no genera las ubicaciones óptimas para trampas de
     mosquitos. 
 
-\chapter{Solución}
+\chapter{Solución}\label{chap:solucion}
   En este capítulo se detalla la solución propuesta para la problemática
   expuesta en el capítulo anterior. Se explica el diseño y desarrollo de la
   solución, así como el algoritmo implementado y configuración de
@@ -599,8 +662,7 @@
     genera un logbook con los mismos datos generados por el GA, para así
     permitir la comparación de ambos métodos de optimización. 
 
-
-\chapter{Metodología de evaluación}
+\chapter{Metodología de evaluación}\label{chap:metolodogia}
 
   En este capítulo se describe la metodología de evaluación seleccionada para
   validar que se ha resuelto la problemática identificada en este trabajo. A
@@ -608,7 +670,7 @@
   algoritmo implementado como solución, así como las métricas que se obtendrán
   para confirmar la efectividad de la solución.
 
-  \section{Hardware}
+  \section{Hardware}\label{sect:hardware}
 
     La evaluación del algoritmo propuesto en este trabajo se realizó en una
     MacBook Pro 2020, con un procesador Intel Core i7 de 2.6 GHz con 6 núcleos y
@@ -703,10 +765,9 @@
     En el siguiente capítulo se presentan los resultados obtenidos de esta
     evaluación.
 
-\chapter{Resultados y contribuciones}
+\chapter{Resultados}\label{chap:resultados}
   En este capítulo se describirán a detalle los resultados obtenidos de la
-  evaluación del algoritmo PSO presentado en este trabajo, así como las
-  contribuciones logradas.
+  evaluación del algoritmo PSO presentado en este trabajo.
 
   \section{Búsqueda de mejores parámetros}\label{sect:busqueda-mejores-params}
     Los resultados de la búsqueda de mejor configuración para el PSO se muestran
@@ -778,12 +839,55 @@
       \label{fig:params-search-lines}
     \end{figure}
 
+  \section{Comparación de algoritmos}
+
+    En las Figuras \ref{fig:average-results} y \ref{fig:percentile} se presentan
+    los comportamientos generales de cada algoritmo con el entorno generado
+    previamente. En la primer imagen se muestran los resultados óptimos
+    encontrados por generación durante las 20 ejecuciones de cada algoritmo. Se
+    puede apreciar como, el PSO, es capaz de encontrar muy buenos resultados
+    tempranamente, pues entre las generaciones 50 y 100 está alcanzando los
+    mínimos. Sin embargo, un 20\% de las ocasiones, el algoritmo propuesto se
+    encuentra atorado en mínimos locales desde etapas tempranas de la búsqueda y
+    no es capaz de salir. A diferencia del PSO, el algoritmo genético es capaz
+    de salir de los mínimos locales y encontrar un valor cercano al mínimo
+    global en las etapas tardías de la optimización. A pesar de esto, el PSO
+    logra encontrar mejores resultados la mayoría de las veces.
+
     \begin{figure}[ht!]
       \centering
       \includegraphics[width=\textwidth]{average-results.png}
       \caption{Comportamiento de PSO y GA}
       \label{fig:average-results}
     \end{figure}
+
+    En la figura \ref{fig:percentile} se puede apreciar mejor la calidad de los
+    resultados encontrados por cada algoritmo. En la gráfica de bandas de
+    percentiles se muestra una línea sólida con el promedio de los resultados
+    por generación y en colores más claros se presentan los percentiles 75 y 25.
+    Se puede apreciar que la mayoría de las veces el PSO logra optimizar de
+    mejor manera la posición de las trampas en el entorno generado. La línea de
+    promedio del PSO se ve separada de los percentiles debido a las ejecuciones
+    en donde este algoritmo se vió atorado en un mínimo local.
+
+    El tiempo de ejecución promedio del GA fue de 97.807 segundos con el equipo
+    de cómputo presentado anteriormente (\ref{sect:hardware}) y el PSO presenta
+    un tiempo de ejecución de 200.9426 segundos. El tiempo de ejecución del PSO
+    se ve impactado en su mayoría por el número de evaluaciones por generación
+    (40), a diferencia del GA (de 30 a 50). Además, la implementación del PSO
+    realiza operaciones a nivel de Python, cuando el GA realiza la mayoría de
+    sus operaciones de una manera más eficiente (con NumPy principalmente).
+
+    Adicionalmente, en las Figuras \ref{fig:pso-best} y \ref{fig:ga-best} se
+    presentan las mejores posiciones encontradas para las trampas por el PSO y
+    el GA (respectivamente). Así mismo, las Figuras \ref{fig:pso-worst} y
+    \ref{fig:ga-worst} muestran los peores resultados de estos algoritmos. En la
+    Figura \ref{fig:pso-worst} se puede apreciar la consecuencia de quedar en un
+    mínimo local, pues el resultado es significativamente peor que el del GA. 
+
+    Gracias a estos resultados, se puede afirmar que el algoritmo propuesto en
+    este trabajo logra encontrar mejores posiciones para las trampas, a
+    comparación del algoritmo genético implementado en MGSurvE.
 
     \begin{figure}[ht!]
       \centering
@@ -820,7 +924,68 @@
       \label{fig:ga-worst}
     \end{figure}
 
-% \chapter{Conclusiones}
+\chapter{Conclusiones y trabajo futuro}\label{chap:conclusiones}
+
+    En este capítulo se presentan las conclusiones obtenidas de este trabajo. 
+    Se toman en cuenta los trabajos que componen el estado del arte, la solución
+    propuesta y los resultados obtenidos de la evaluación de la efectividad del
+    algoritmo.
+
+    \section{Conclusiones}
+
+    En la última década se ha visto un incremento en los artículos publicados
+    en donde se aplican algoritmos de optimización a distintos campos. Sin
+    embargo, las aplicaciones para el control y monitoreo de mosquito son
+    mínimas. El trabajo más relevante es MGSurvE, pues es la única herramienta
+    enfocada totalmente a la optimización en el ámbito de monitoreo de
+    mosquitos.
+
+    La problemática presentada en este trabajo gira en torno a MGSurvE, pues su
+    algoritmo de optimización, un GA, no está encontrando las mejores posiciones
+    posibles para las trampas de mosquitos, y estos resultados son encontrados
+    en etapas tardías de las búsquedas. 
+
+    A partir de esto, se propuso la implementación de un algoritmo PSO para
+    reemplazar al GA y mejorar el comportamiento general del paquete MGSurvE.
+
+    Para validar que el algoritmo propuesto cumplía con su propósito, se diseñó
+    una metodología basada en la comparación directa de ambos algoritmos, el PSO
+    y el GA.
+    
+    A partir de las métricas generadas de la comparación, se puede concluir que
+    el algoritmo PSO propuesto en este trabajo cumple su objetivo de mejorar
+    los resultados arrojados por MGSurvE, pues genera mejores posiciones para
+    las trampas la mayoría de las veces y lo hace en una menor cantidad de
+    generaciones.
+
+    \section{Contribuciones}
+
+    Las contribuciones logradas gracias al algoritmo desarrollado en este
+    trabajo son las siguientes:
+
+    \begin{itemize}
+      \item Se mejoraron los resultados arrojados por la optimización de trampas
+        de mosquitos en el paquete MGSurvE.
+      \item Se redujo el tiempo de optimización de trampas para mosquito en el
+        paquete MGSurvE.
+    \end{itemize}
+
+    \section{Trabajo futuro}
+
+    Durante el desarrollo y evaluación del algoritmo PSO propuesto en este
+    trabajo se encontraron algunas áreas de oportunidad para mejora. Estas
+    oportunidades se deben a falta de recursos para el desarrollo. Las posibles
+    mejoras futuras son las siguientes:
+
+    \begin{itemize}
+      \item Buscar solución al problema de mínimos locales presente en el
+        algoritmo PSO.
+      \item Graficar el percentil 50 o la media en la Figura
+        \ref{fig:percentile} en lugar del promedio para mejorar la visualización
+        de los datos.
+      \item Realizar una comparación del comportamiento del PSO con diferentes
+        cantidades de trampas a optimizar.
+    \end{itemize}    
 
 \begin{thebibliography}{99}
   \bibitem{AIModernAproach}S. Russell and P. Norving, “Artificial Intelligence: A modern approach”, 3rd ed. Prentice Hall, New Jersey: Pearson Education, 2009. 
