@@ -69,6 +69,13 @@
   para mosquitos. Es de suma importancia lograr los mejores resultados con un
   número finito de trampas para detectar las migraciones de mosquitos.
 
+  \section{Objetivo}
+
+  El principal objetivo del presente trabajo es obtener las posiciones óptimas
+  de trampas para mosquito y así acortar los tiempos de detección de mosquito y
+  lograr, en un futuro, un mejor monitoreo de variantes genéticas de interés en
+  una población de mosquitos dada.
+
   \section{Estructura del trabajo}
 
   El presente reporte está compuesto de 7 capítulos que tratan diferentes puntos
@@ -97,9 +104,13 @@
   \ref{chap:resultados}. Se presentan una variedad de gráficas y tablas para
   entender a detalle el comportamiento del algoritmo propuesto en este trabajo.
 
+  Después, se presentan en el Capítulo \ref{chap:interpretacion} las
+  contribuciones logradas a partir de los resultados obtenidos con la evaluación
+  del trabajo.
+
   Finalmente, en el Capítulo \ref{chap:conclusiones} se presentan las
-  conclusiones, contribuciones logradas y el posible trabajo futuro para mejorar
-  los resultados obtenidos por la solución propuesta.
+  conclusiones y el posible trabajo futuro para mejorar los resultados obtenidos
+  por la solución propuesta.
 
 \chapter{Estado del arte}\label{chap:estado-del-arte}
   Antes de hablar del problema y su solución, es necesario entrar en contexto.
@@ -924,6 +935,40 @@
       \label{fig:ga-worst}
     \end{figure}
 
+\chapter{Interpretación}\label{chap:interpretacion}
+  En este capítulo se interpretarán los resultados presentados en el capítulo
+  anterior para así entender las contribuciones logradas con este trabajo.
+
+  Como se puede ver en las Figuras \ref{fig:average-results} y
+  \ref{fig:percentile}, el PSO logra mejores resultados, en la mayoría de los
+  casos, que el GA en menos generaciones. Además, aunque al PSO le toma casi el
+  doble de tiempo en ejecutar las 500 generaciones, los mejores resultados del
+  PSO son encontrados en 1/5 de las generaciones necesarias para el GA, por lo
+  que el tiempo de búsqueda fue disminuido con el esfuerzo realizado en el
+  presente trabajo.
+
+  Después de interpretar lo anterior de los resultados obtenidos, se puede decir
+  que las contribuciones logradas en este trabajo son las siguientes:
+
+  \begin{itemize}
+    \item Se mejoraron los resultados arrojados por la optimización de trampas
+      de mosquitos en el paquete MGSurvE.
+    \item Se redujo el tiempo de optimización de trampas para mosquito en el
+      paquete MGSurvE.
+  \end{itemize}
+
+  Gracias a estas contribuciones, los recursos asignados para el monitoreo 
+  variantes de mosquitos en un futuro serán mejor aprovechados y se necesitará
+  menor cantidad de tiempo para lograr detectar las migraciones de estos
+  mosquitos en el campo.
+
+  Sin embargo, también se puede decir que
+  el PSO tiene grandes áreas de mejora, como solucionar el problema de los
+  mínimos locales en el 20\% de los casos. De igual manera, hay oportunidad de
+  trabajo en la comparación y análisis del algoritmo trabajado, para entender
+  mejor cómo se comporta con más trampas y diferentes tipos de escenarios y
+  entornos proporcionados por el paquete MGSurvE.
+
 \chapter{Conclusiones y trabajo futuro}\label{chap:conclusiones}
 
     En este capítulo se presentan las conclusiones obtenidas de este trabajo. 
@@ -957,18 +1002,6 @@
     los resultados arrojados por MGSurvE, pues genera mejores posiciones para
     las trampas la mayoría de las veces y lo hace en una menor cantidad de
     generaciones.
-
-    \section{Contribuciones}
-
-    Las contribuciones logradas gracias al algoritmo desarrollado en este
-    trabajo son las siguientes:
-
-    \begin{itemize}
-      \item Se mejoraron los resultados arrojados por la optimización de trampas
-        de mosquitos en el paquete MGSurvE.
-      \item Se redujo el tiempo de optimización de trampas para mosquito en el
-        paquete MGSurvE.
-    \end{itemize}
 
     \section{Trabajo futuro}
 
