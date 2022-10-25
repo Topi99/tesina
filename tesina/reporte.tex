@@ -1,0 +1,268 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis LaTeX Template Modified by Ng for the Tesina Course
+% Version 1.2 (05/24/2018)
+% Note:
+% Make sure to include the Thesis.cls  file in the folder
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt, a4paper, oneside]{Thesis} % paper size redifined in Thesis.cls
+\usepackage[square, numbers, comma, sort&compress]{natbib}
+\usepackage[nodayofweek]{datetime}
+\usepackage{float}
+\usepackage{array}
+\usepackage{wrapfig}
+\usepackage{pdfpages}
+\usepackage[utf8]{inputenc}  % Ng Edit for accents in spanish
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{siunitx}
+
+\hypersetup{urlcolor=blue, colorlinks=true}
+\title{\ttitle}
+\thesistitle{tesina ISC}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+\def\equationautorefname~#1\null{(#1)\null} %to use parenthesis in eqs.
+\begin{document}
+\frontmatter
+\setstretch{1.3}
+
+\fancyhead{}
+\rhead{\thepage}
+\lhead{}
+
+\pagestyle{fancy}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% PDF meta-data
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\subjectname}
+%\hypersetup{pdfauthor=\authornames}
+\hypersetup{pdfkeywords=\keywordnames}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+\textsc{\Large \univname}\\
+\textsc{\Large \facname}\\
+\textsc{\Large \schoolname}\\[1cm]
+%Path relative to the .tex file containing the \includegraphics command
+\graphicspath{ {img/} }
+\includegraphics[scale=.3]{logo.png} \\
+\centering{
+  \Large \bfseries
+  Mejora en la optimización de la ubicación de trampas para mosquito con
+  Particle Swarm Optimization.
+}\\[0.5cm]
+
+\large por\\[0.5cm]
+
+\begin{minipage}{0.4\textwidth}
+\begin{center} \large
+\authors{Topiltzin Hernández Mares} %modificame  pon tu nombre
+\large{\href{mailto:a01703266@tec.mx?subject=Awesome thesis, man!}{\authornames}} 
+\\[0.5cm] 
+\end{center}
+\end{minipage}\\[0.5cm]
+
+\large Proyecto Integrador para el Desarrollo de Soluciones Empresariales \\ \textit{\degreename}\\[0.8cm]
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{lll}
+\multicolumn{1}{r}{Asesor:} & Dr. Benjamín Valdés \\  %modificame nombre de tu asesor
+\multicolumn{1}{r}{Co-Asesor:} & Dr. Héctor Sánchez \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\vspace{3cm}
+Santiago de Querétaro, Querétaro, México \\
+
+{\large \longdate{08/06/2022}}\\[1.5cm]
+\vfill
+\end{center}
+
+\end{titlepage}
+
+
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	QUOTATION PAGE
+%----------------------------------------------------------------------------------------
+
+% \pagestyle{empty} % No headers or footers for the following pages%
+% \null\vfill
+
+% \begin{center}
+% \textit{"the state is a plurality which should be united and made into a community by education"}
+% \end{center}
+
+% \begin{flushright}
+% The Politics, Aristotle
+% \end{flushright}
+
+
+% \begin{center}
+% \textit{"Nobody phrases it this way, but I think that artificial intelligence is almost a humanities discipline, ... It's really an attempt to understand human intelligence and human cognition."} 
+% \end{center}
+% \begin{flushright}
+% Sebastian Thrun 
+% \end{flushright}
+
+
+% \vfill\vfill\vfill\vfill\vfill\vfill\null 
+
+% \clearpage
+
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\setstretch{1.3} % Reset the line-spacing to 1.3 for body text (if it has changed)
+
+\acknowledgements{\addtocontents{toc}{\vspace{1em}}
+  Aunque yo soy el autor de éste trabajo, no todo el esfuerzo fue mío, pues
+  diversas personas contribuyeron e invirtieron su tiempo al desarrollo de este
+  trabajo.
+  
+  Primeramente, quiero reconocer a mis padres, por apoyarme y siempre estar para
+  mi cuando más los necesité. A mi hermana, por escucharme y hacerme ver las
+  cosas desde otra perspectiva.
+
+  Igualmente, quiero reconocer el esfuerzo de mis asesores, por resolver dudas y
+  asistirme con diferentes temas durante la investigación. 
+
+  Y finalmente, quiero agradecer a mis compañeros de clase (Alberto, Juan,
+  Peter, Yaf, entre otros) por todas las pláticas y discusiones académicas, pues
+  me ayudaron a llegar a mejores explicaciones que terminaron en este trabajo.
+}
+\clearpage % Start a new page
+
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\addtotoc{Abstract} % Add the "Abstract" page entry to the Contents
+\abstract{\addtocontents{toc}{\vspace{1em}}
+A pesar de un incremento en las aplicaciones de algoritmos de optimización en
+los últimos años, no existen muchas aplicaciones en el ámbito del control y
+monitoreo de mosquitos. Actualmente solo existe MGSurvE, un paquete diseñado
+para optimizar la posición de trampas para mosquito, sin embargo, su algoritmo
+de optimización no es el más adecuado para esta tarea. Se desarrolló un
+algoritmo PSO que busca mejorar los resultados arrojados por MGSurvE. Se
+registraron mejoras en la cantidad de generaciones necesarias y en los
+resultados mínimos de detección de mosquitos. 
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy}
+
+%\lhead{\emph{List of Figures}} % Set the left side page header to "List of Figures"
+%\listoffigures % Write out the List of Figures
+
+%\lhead{\emph{List of Tables}} % Set the left side page header to "List of Tables"
+%\listoftables % Write out the List of Tables
+
+\lhead{\emph{Contents}} % Set the left side page header to "Contents"
+\tableofcontents % Write out the Table of Contents
+
+%----------------------------------------------------------------------------------------
+%	ABBREVIATIONS
+%----------------------------------------------------------------------------------------
+
+\clearpage
+\setstretch{1.5}
+
+\lhead{\emph{Acrónimos}} % Set the left side page header to "Abbreviations"
+\listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
+{
+  \textbf{EA} & \textbf{E}volutionary \textbf{A}lgorithms \\
+  \textbf{GA} & \textbf{G}enetic \textbf{A}lgorithm \\
+  \textbf{PSO} & \textbf{P}article \textbf{S}warm \textbf{O}ptimization \\
+  \textbf{SI} & \textbf{S}warm \textbf{I}ntelligence \\
+  \textbf{MGSurvE} & \textbf{M}osquito \textbf{G}ene \textbf{Surv}eilance \textbf{E}xplorer \\
+}
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Begin page numbering
+
+\pagestyle{fancy}
+
+% Include the chapters of the thesis as separate files from the Chapters folder
+
+\input{capitulos}
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\addtocontents{toc}{\vspace{2em}}
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+
+
+% \input{apendices}  %modificame si not tienens apendices comenta esta linea
+
+\addtocontents{toc}{\vspace{2em}}
+
+\backmatter
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+\label{Bibliography}
+
+\lhead{\emph{Bibliografía}}
+\bibliographystyle{unsrt}
+\begin{thebibliography}{99}
+  \bibitem{AIModernAproach}S. Russell and P. Norving, “Artificial Intelligence: A modern approach”, 3rd ed. Prentice Hall, New Jersey: Pearson Education, 2009. 
+  \bibitem{AIDef}J. M. Spector and S. Ma, “Inquiry and critical thinking skills for the next generation: From Artificial Intelligence back to human intelligence,” Smart Learning Environments, vol. 6, no. 1, Sep. 2019. 
+  \bibitem{SearchMethodologies}E. K. Burke and G. Kendall, “Search methodologies: Introductory tutorials in optimization and decision support techniques”. New York, New York: Springer, 2014.
+  \bibitem{HeuristicDef}V. J. Rayward-Smith, “Modern Heuristic Search Methods”. Chichester, New York: Wiley, 1996. 
+  \bibitem{MetaheuristicsDef}F. Glover and M. Laguna, “Tabu Search”. Boston, Massachusets: Kluwer Academic Publishers, 1997.
+  \bibitem{EADef}C. A. Coello Coello, G. B. Lamont, and D. A. Van Veldhuizen, “Evolutionary algorithms for solving multi-objective problems,” Genetic and Evolutionary Computation Series, 2007. 
+  \bibitem{GADef}A. S. Fraser, “Simulation of genetic systems by Automatic Digital Computers II. effects of linkage on rates of advance under selection,” Australian Journal of Biological Sciences, vol. 10, no. 4, p. 492, 1957. 
+  \bibitem{PSODef}J. Kennedy and R. Eberhart, “Particle swarm optimization,” Proceedings of ICNN'95 - International Conference on Neural Networks, 1995. 
+  \bibitem{CPSO}Y. Shi and R. Eberhart, “A modified particle swarm optimizer,” 1998 IEEE International Conference on Evolutionary Computation Proceedings. IEEE World Congress on Computational Intelligence (Cat. No.98TH8360), 1998. 
+  \bibitem{PSOReview}S. Cheg, H. Lu, X. Lei, and Y. Shi, “A quarter century of particle swarm optimization,”, Complex and Intelligent Systems, vol. 4, no. 3, pp. 227 239, 2018.
+
+  \bibitem{3DAFAO}S. Li, C. Zhang, and J. Qu, “Location optimization of wireless sensor network in Intelligent Workshop based on the three-dimensional adaptive fruit fly optimization algorithm,” International Journal of Online Engineering (iJOE), vol. 14, no. 11, p. 202, Nov. 2018. 
+  \bibitem{PSOEnergy}N. Hantash, T. Khatib, and M. Khammash, “An improved particle swarm optimization algorithm for optimal allocation of distributed generation units in Radial Power Systems,” Applied Computational Intelligence and Soft Computing, vol. 2020, pp. 1-8.
+  \bibitem{APSO2016}H. Liang and F. H. Kang, “Adaptive mutation particle swarm algorithm with dynamic nonlinear changed inertia weight,” Optik-International Journal for Light and Electron Optics, vol. 127, no. 19, pp. 8036-8042, 2016.
+  \bibitem{MGSurvE}H. M. Sanchez, “MGSurvE's documentation,” MGSurvE's documentation! - MGSurvE documentation, 2021. [Online]. Available: https://chipdelmal.github.io/MGSurvE/build/html/index.html. [Accessed: 31-Mar-2022]. 
+  \bibitem{DEAP}DEAP Project, “DEAP documentation,” DEAP documentation - DEAP 1.3.1 documentation, 2022. [Online]. Available: https://deap.readthedocs.io/en/master/. [Accessed: 01-Apr-2022]. 
+  \bibitem{DE&PSOCov}A. P. Piotrowski and A. E. Piotrowska, “Differential Evolution and particle swarm optimization against covid-19,” Artificial Intelligence Review, Jul. 2021. 
+  \bibitem{SwarmVsEvol}A. P. Piotrowski, M. J. Napiorkowski, J. J. Napiorkowski, and P. M. Rowinski, “Swarm intelligence and Evolutionary Algorithms: Performance versus speed,” Information Sciences, vol. 384, pp. 34-85, Apr. 2017. 
+  \bibitem{PSOPopulationSize}A. P. Piotrowski, J. J. Napiorkowski, and A. E. Piotrowska, “Population size in particle swarm optimization,” Swarm and Evolutionary Computation, vol. 58, May 2020. 
+  \bibitem{MarshallLab}The Marshall Lab at UC Berkeley. (s. f.). THE MARSHALL LAB. https://www.marshalllab.com/
+
+  \bibitem{ShapeUp}R. Singer, “Shape up V 1.8, 2019 edition,” Shape Up: Stop Running in Circles and Ship Work that Matters, 2019. [Online]. Available: https://basecamp.com/shapeup/webbook. [Accessed: 03-May-2022]. 
+  \bibitem{PandasDocs}“Pandas,” pandas, 02-Apr-2022. [Online]. Available: https://pandas.pydata.org/. [Accessed: 06-May-2022]. 
+  \bibitem{NumPyDocs}NumPy, 2022. [Online]. Available: https://numpy.org/. [Accessed: 06-May-2022]. 
+  \bibitem{DEAPDocs}“DEAP documentation,” DEAP documentation - DEAP 1.3.1 documentation, 22-Jan-2022. [Online]. Available: https://deap.readthedocs.io/en/master/. [Accessed: 06-May-2022]. 
+\end{thebibliography}
+\end{document}
